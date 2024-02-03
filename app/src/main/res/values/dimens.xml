@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="general_margin">20dp</dimen>
+    <dimen name="header1_size">25sp</dimen>
+    <dimen name="header2_size">20sp</dimen>
+    <dimen name="padding_size">16dp</dimen>
+    <dimen name="first_name_margin">10dp</dimen>
+    <dimen name="layout_delimiter_margin">20dp</dimen>
+    <dimen name="accept_btn_vertical_margin">100dp</dimen>
+</resources>
