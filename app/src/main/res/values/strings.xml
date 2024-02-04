@@ -8,6 +8,7 @@
     <string name="profile_photo">Profile photo</string>
     <string name="accept_btn">Применить</string>
     <string name="gender">Пол:</string>
+    <string name="second_profile">Профиль №2</string>
 
     <string-array name="genders">
         <item>Мужской</item>

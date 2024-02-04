@@ -56,10 +56,10 @@ class ActivityB : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            if (it.resultCode == RESULT_OK) {
-                val value = it.data?.getStringExtra("input")
-                val textView = findViewById<View>(R.id.tvActivityCInput) as TextView
-                textView.text = "Input from ActivityC: $value"
-            }
+//            if (it.resultCode == RESULT_OK) {
+//                val value = it.data?.getStringExtra("input")
+//                val textView = findViewById<View>(R.id.tvActivityCInput) as TextView
+//                textView.text = "Input from ActivityC: $value"
+//            }
         }
 }
