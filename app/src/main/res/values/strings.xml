@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">AndroidTasks</string>
+    <string name="profile">Профиль</string>
+    <string name="last_name">Кучумов</string>
+    <string name="first_name">Михаил</string>
+    <string name="patronymic">Юрьевич</string>
+    <string name="birthdate">Дата рождения</string>
+    <string name="profile_photo">Profile photo</string>
+    <string name="accept_btn">Применить</string>
+    <string name="gender">Пол:</string>
+
+    <string-array name="genders">
+        <item>Мужской</item>
+        <item>Женский</item>
+    </string-array>
 
 </resources>
