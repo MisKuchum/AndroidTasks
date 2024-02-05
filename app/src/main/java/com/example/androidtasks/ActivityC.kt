@@ -47,8 +47,8 @@ class ActivityC : AppCompatActivity() {
     }
 
     fun onClickInputButton(view: View) {
-        val edit = findViewById<View>(R.id.etInput) as EditText
-        intent.putExtra("input", edit.text.toString())
+        val edit = findViewById<EditText>(R.id.et_birthdate)
+        //intent.putExtra("input", edit.text.toString())
         setResult(RESULT_OK, intent)
         finish()
     }
