@@ -10,11 +10,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 
 class ActivityB : AppCompatActivity() {
     private val TAG = "MyApp"
+    private lateinit var actionCTextView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ActivityB is [onCreate] now")
 
         setContentView(R.layout.activity_b)
+        actionCTextView = findViewById(R.id.tw_action_c_text)
     }
 
     override fun onStart() {
@@ -56,10 +59,9 @@ class ActivityB : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-//            if (it.resultCode == RESULT_OK) {
-//                val value = it.data?.getStringExtra("input")
-//                val textView = findViewById<View>(R.id.tvActivityCInput) as TextView
-//                textView.text = "Input from ActivityC: $value"
-//            }
+            if (it.resultCode == RESULT_OK) {
+                val value = it.data?.getStringExtra("input")
+                actionCTextView.text = "Input from ActivityC: $value"
+            }
         }
 }
