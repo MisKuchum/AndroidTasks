@@ -78,10 +78,10 @@
         android:textSize="@dimen/header2_size"
         app:layout_constraintBaseline_toBaselineOf="@+id/spinner"
         app:layout_constraintEnd_toStartOf="@+id/spinner"
-        app:layout_constraintStart_toEndOf="@+id/editTextText" />
+        app:layout_constraintStart_toEndOf="@+id/et_birthdate" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/et_birthdate"
         android:layout_width="@dimen/zero_dp"
         android:layout_height="wrap_content"
         android:inputType="text"

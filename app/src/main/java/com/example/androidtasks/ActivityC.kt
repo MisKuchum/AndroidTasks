@@ -9,11 +9,13 @@ import android.widget.EditText
 
 class ActivityC : AppCompatActivity() {
     private val TAG = "MyApp"
+    private lateinit var etBirthdate: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ActivityC is [onCreate] now")
 
         setContentView(R.layout.activity_c)
+        etBirthdate = findViewById<EditText>(R.id.et_birthdate)
     }
 
     override fun onStart() {
@@ -47,8 +49,7 @@ class ActivityC : AppCompatActivity() {
     }
 
     fun onClickInputButton(view: View) {
-        val edit = findViewById<EditText>(R.id.et_birthdate)
-        //intent.putExtra("input", edit.text.toString())
+        intent.putExtra("input", etBirthdate.text.toString())
         setResult(RESULT_OK, intent)
         finish()
     }
