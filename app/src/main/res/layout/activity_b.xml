@@ -97,4 +97,14 @@
       app:layout_constraintEnd_toEndOf="parent"
       android:onClick="onClickOpenActivityC" />
 
+  <TextView
+      android:id="@+id/tw_action_c_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="@dimen/header2_size"
+      app:layout_constraintBottom_toTopOf="@id/btn_accept"
+      app:layout_constraintTop_toBottomOf="@id/et_birthdate"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
