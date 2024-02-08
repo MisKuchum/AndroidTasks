@@ -12,4 +12,5 @@
     <dimen name="zero_dp">0dp</dimen>
     <dimen name="left_guideline">109dp</dimen>
     <dimen name="right_guideline">263dp</dimen>
+    <dimen name="btn_toast_margin_top">30dp</dimen>
 </resources>

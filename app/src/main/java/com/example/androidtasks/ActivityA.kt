@@ -4,16 +4,28 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 
 class ActivityA : ComponentActivity() {
     private val TAG = "MyApp"
+    private lateinit var btnToast: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ActivityA is [onCreate] now")
 
         setContentView(R.layout.activity_a)
+        btnToast = findViewById(R.id.btn_toast)
+
+        var toastCounter = 0
+
+        btnToast.setOnClickListener {
+            Toast.makeText(applicationContext, "Съел тост: $toastCounter шт.", Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "Съел тост: $toastCounter шт.")
+            toastCounter++
+        }
     }
 
     override fun onStart() {
