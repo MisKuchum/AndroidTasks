@@ -13,4 +13,5 @@
     <dimen name="left_guideline">109dp</dimen>
     <dimen name="right_guideline">263dp</dimen>
     <dimen name="btn_toast_margin_top">30dp</dimen>
+    <dimen name="tv_general_margin">5dp</dimen>
 </resources>
