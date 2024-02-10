@@ -81,25 +81,23 @@ class ActivityB : AppCompatActivity() {
     }
 
     private fun setTvOnClickListeners() {
+        val tvMap = mapOf<TextView, String>(
+            greenTextView to "Зелёное яблоко",
+            redTextView to "Красная клубника",
+            blueTextView to "Голубое небо",
+            orangeTextView to "Оранжевый закат",
+            purpleTextView to "Фиолетовый брабус"
+        )
+
         val onClick = { text: String ->
             Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
             Log.d(TAG, text)
         }
 
-        greenTextView.setOnClickListener {
-            onClick("Зелёное яблоко")
-        }
-        redTextView.setOnClickListener {
-            onClick("Красная клубника")
-        }
-        blueTextView.setOnClickListener {
-            onClick("Голубое небо")
-        }
-        orangeTextView.setOnClickListener {
-            onClick("Оранжевый закат")
-        }
-        purpleTextView.setOnClickListener {
-            onClick("Фиолетовый брабус")
+        tvMap.forEach { (tv, text) ->
+            tv.setOnClickListener {
+                onClick(text)
+            }
         }
     }
 }
