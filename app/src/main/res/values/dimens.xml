@@ -10,4 +10,6 @@
     <dimen name="image_padding_end">10dp</dimen>
     <dimen name="image_padding_bottom">20dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
+    <dimen name="left_guideline">109dp</dimen>
+    <dimen name="right_guideline">263dp</dimen>
 </resources>

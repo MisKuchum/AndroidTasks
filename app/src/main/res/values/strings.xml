@@ -9,6 +9,7 @@
     <string name="accept_btn">Применить</string>
     <string name="gender">Пол:</string>
     <string name="second_profile">Профиль №2</string>
+    <string name="third_profile">Профиль №3</string>
 
     <string-array name="genders">
         <item>Мужской</item>
