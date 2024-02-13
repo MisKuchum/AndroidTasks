@@ -11,6 +11,7 @@ import androidx.activity.ComponentActivity
 class ActivityA : ComponentActivity() {
     private val TAG = "MyApp"
     private lateinit var btnToast: Button
+    private var toastCounter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +19,6 @@ class ActivityA : ComponentActivity() {
 
         setContentView(R.layout.activity_a)
         btnToast = findViewById(R.id.btn_toast)
-
-        var toastCounter = 0
 
         btnToast.setOnClickListener {
             Toast.makeText(applicationContext, "Съел тост: $toastCounter шт.", Toast.LENGTH_SHORT).show()
