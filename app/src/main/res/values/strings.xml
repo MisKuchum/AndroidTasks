@@ -21,6 +21,9 @@
     <string name="tv_blue_tag">Голубое небо</string>
     <string name="tv_orange_tag">Оранжевый закат</string>
     <string name="tv_purple_tag">Фиолетовый брабус</string>
+    <string name="et_phone_hint">Номер телефона</string>
+    <string name="tv_height_text">Рост:</string>
+    <string name="et_password_hint">Пароль</string>
 
     <string-array name="genders">
         <item>Мужской</item>

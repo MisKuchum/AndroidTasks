@@ -6,7 +6,7 @@
     <dimen name="padding_size">16dp</dimen>
     <dimen name="first_name_margin">10dp</dimen>
     <dimen name="layout_delimiter_margin">20dp</dimen>
-    <dimen name="accept_btn_vertical_margin">100dp</dimen>
+    <dimen name="accept_btn_vertical_margin">50dp</dimen>
     <dimen name="image_padding_end">10dp</dimen>
     <dimen name="image_padding_bottom">20dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
@@ -14,4 +14,7 @@
     <dimen name="right_guideline">263dp</dimen>
     <dimen name="btn_toast_margin_top">30dp</dimen>
     <dimen name="tv_general_margin">5dp</dimen>
+    <dimen name="et_layout_margin_top">10dp</dimen>
+    <dimen name="tv_height_padding_end">10dp</dimen>
+    <dimen name="et_password_margin_top">10dp</dimen>
 </resources>
