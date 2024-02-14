@@ -15,11 +15,12 @@ import kotlin.random.Random
 
 class ActivityA : ComponentActivity() {
     private val TAG = "MyApp"
+    private val minPasswordLen = 8
     private lateinit var btnToast: Button
     private lateinit var etPhone: EditText
     private lateinit var etHeight: EditText
     private lateinit var etPassword: EditText
-    private var toastCounter = 0
+    private var toastCounter = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,8 +93,17 @@ class ActivityA : ComponentActivity() {
         }
 
         etPassword.addTextChangedListener {
-            if (btnToast.isVisible) btnToast.visibility = View.INVISIBLE
-            else btnToast.visibility = View.VISIBLE
+            val etText = etPassword.text.toString()
+            if (
+                etText.any() { it.isDigit() } &&
+                etText.any() { it.isUpperCase() } &&
+                etText.length > minPasswordLen
+                ) {
+                btnToast.visibility = View.VISIBLE
+            }
+            else {
+                btnToast.visibility = View.INVISIBLE
+            }
         }
     }
 
