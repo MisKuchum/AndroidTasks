@@ -11,6 +11,16 @@
     <string name="second_profile">Профиль №2</string>
     <string name="third_profile">Профиль №3</string>
     <string name="btn_toast_label">Я люблю тосты</string>
+    <string name="label_green">Зеленый</string>
+    <string name="label_red">Красный</string>
+    <string name="label_blue">Голубой</string>
+    <string name="label_orange">Оранжевый</string>
+    <string name="label_purple">Фиолетовый</string>
+    <string name="tv_green_tag">Зелёное яблоко</string>
+    <string name="tv_red_tag">Красная клубника</string>
+    <string name="tv_blue_tag">Голубое небо</string>
+    <string name="tv_orange_tag">Оранжевый закат</string>
+    <string name="tv_purple_tag">Фиолетовый брабус</string>
 
     <string-array name="genders">
         <item>Мужской</item>
