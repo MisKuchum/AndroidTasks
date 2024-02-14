@@ -24,6 +24,7 @@ class ActivityB : AppCompatActivity() {
         setContentView(R.layout.activity_b)
         initViews()
         setTvOnClickListeners()
+        actionCTextView = findViewById(R.id.tw_action_c_text)
     }
 
     override fun onStart() {
