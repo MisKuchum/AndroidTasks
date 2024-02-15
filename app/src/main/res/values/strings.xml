@@ -32,6 +32,7 @@
     <string name="rb_m_experience_text">1 - 2 года</string>
     <string name="rb_l_experience_text"><![CDATA[> 2 лет]]></string>
     <string name="tv_hobby_text">Хобби:</string>
+    <string name="tv_toast_text">Это я</string>
 
     <string-array name="genders">
         <item>Мужской</item>

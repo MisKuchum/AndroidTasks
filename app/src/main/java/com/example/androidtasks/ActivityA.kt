@@ -5,8 +5,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.view.isVisible
@@ -19,6 +22,7 @@ class ActivityA : ComponentActivity() {
     private lateinit var etPhone: EditText
     private lateinit var etHeight: EditText
     private lateinit var etPassword: EditText
+    private lateinit var ivPhoto: ImageView
     private var toastCounter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +34,7 @@ class ActivityA : ComponentActivity() {
         etPhone = findViewById(R.id.et_phone)
         etHeight = findViewById(R.id.et_height)
         etPassword = findViewById(R.id.et_password)
+        ivPhoto = findViewById(R.id.iv_photo)
 
         etPhone.addTextChangedListener {
             val rnd = Random.Default
@@ -42,6 +47,14 @@ class ActivityA : ComponentActivity() {
                 .show()
             Log.d(TAG, "Съел тост: $toastCounter шт.")
             toastCounter++
+        }
+
+        ivPhoto.setOnClickListener {
+            Toast(this).apply {
+                duration = Toast.LENGTH_SHORT
+                view = layoutInflater.inflate(R.layout.custom_toast, findViewById(R.id.cl_toast))
+                show()
+            }
         }
 
         addTextChangedListeners()
