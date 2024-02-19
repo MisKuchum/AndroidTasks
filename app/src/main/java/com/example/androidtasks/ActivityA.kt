@@ -52,7 +52,7 @@ class ActivityA : ComponentActivity() {
         ivPhoto.setOnClickListener {
             Toast(this).apply {
                 duration = Toast.LENGTH_SHORT
-                view = layoutInflater.inflate(R.layout.custom_toast, findViewById(R.id.cl_toast))
+                view = layoutInflater.inflate(R.layout.custom_toast, null)
                 show()
             }
         }
