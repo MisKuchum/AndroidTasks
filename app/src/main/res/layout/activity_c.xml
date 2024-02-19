@@ -126,7 +126,7 @@
             android:text="@string/rb_s_experience_text"
             android:checked="true"
             android:textSize="@dimen/header2_size"
-            android:buttonTint="@color/pink_dark" />
+            android:theme="@style/PinkColorPalette"/>
 
         <RadioButton
             android:id="@+id/rb_m_experience"
@@ -134,8 +134,8 @@
             android:layout_height="wrap_content"
             android:text="@string/rb_m_experience_text"
             android:textSize="@dimen/header2_size"
-            android:buttonTint="@android:color/holo_blue_dark"
-            android:layout_marginHorizontal="@dimen/little_margin" />
+            android:layout_marginHorizontal="@dimen/little_margin"
+            android:theme="@style/BlueColorPalette"/>
 
         <RadioButton
             android:id="@+id/rb_l_experience"
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:text="@string/rb_l_experience_text"
             android:textSize="@dimen/header2_size"
-            android:buttonTint="@android:color/holo_green_dark"/>
+            android:theme="@style/GreenColorPalette"/>
 
     </RadioGroup>
 
@@ -163,7 +163,7 @@
         android:layout_height="wrap_content"
         android:text="@string/cb_football_text"
         android:textSize="@dimen/header2_size"
-        android:buttonTint="@color/pink_light"
+        android:theme="@style/PinkColorPalette"
         app:layout_constraintTop_toBottomOf="@id/tv_hobby"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -173,7 +173,7 @@
         android:layout_height="wrap_content"
         android:text="@string/cb_volleyball_text"
         android:textSize="@dimen/header2_size"
-        android:buttonTint="@android:color/holo_blue_light"
+        android:theme="@style/BlueColorPalette"
         android:layout_marginHorizontal="@dimen/little_margin"
         app:layout_constraintTop_toBottomOf="@id/tv_hobby"
         app:layout_constraintStart_toEndOf="@+id/cb_football" />
@@ -184,7 +184,7 @@
         android:layout_height="wrap_content"
         android:text="@string/cb_basketball_text"
         android:textSize="@dimen/header2_size"
-        android:buttonTint="@android:color/holo_green_light"
+        android:theme="@style/GreenColorPalette"
         app:layout_constraintTop_toBottomOf="@id/tv_hobby"
         app:layout_constraintStart_toEndOf="@+id/cb_volleyball" />
 
