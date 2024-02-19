@@ -85,7 +85,7 @@
         app:layout_constraintBottom_toBottomOf="@id/tw_gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tw_gender" />
-
+  
     <ImageView
         android:id="@+id/iv_maks"
         android:layout_width="@dimen/zero_dp"
@@ -212,6 +212,109 @@
         android:textSize="@dimen/header2_size"
         app:layout_constraintBottom_toTopOf="@id/btn_accept"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_birthdate" />
+    tools:context=".ActivityB"
+    android:layout_margin="@dimen/general_margin">
+
+  <TextView
+      android:id="@+id/tw_second_profile"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/second_profile"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      android:textSize="@dimen/header1_size"
+      android:paddingBottom="@dimen/general_margin"/>
+
+  <ImageView
+      android:id="@+id/iw_profile_photo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/my_photo"
+      android:paddingEnd="@dimen/image_padding_end"
+      android:paddingBottom="@dimen/image_padding_bottom"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tw_second_profile" />
+
+  <TextView
+      android:id="@+id/tw_last_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/last_name"
+      android:textSize="@dimen/header2_size"
+      app:layout_constraintStart_toEndOf="@+id/iw_profile_photo"
+      app:layout_constraintTop_toBottomOf="@+id/tw_second_profile"/>
+
+  <TextView
+      android:id="@+id/tw_first_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/first_name"
+      android:textSize="@dimen/header2_size"
+      app:layout_constraintStart_toEndOf="@+id/iw_profile_photo"
+      app:layout_constraintTop_toBottomOf="@+id/tw_last_name"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:padding="@dimen/first_name_margin" />
+
+  <TextView
+      android:id="@+id/tw_patronymic"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/patronymic"
+      android:textSize="@dimen/header2_size"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tw_first_name" />
+
+  <EditText
+      android:id="@+id/et_birthdate"
+      android:layout_width="@dimen/zero_dp"
+      android:layout_height="wrap_content"
+      android:hint="@string/birthdate"
+      app:layout_constraintTop_toBottomOf="@+id/iw_profile_photo"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/tw_gender"/>
+
+  <TextView
+      android:id="@+id/tw_gender"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/gender"
+      android:textSize="@dimen/header2_size"
+      android:paddingStart="@dimen/general_margin"
+      app:layout_constraintTop_toTopOf="@+id/et_birthdate"
+      app:layout_constraintBottom_toBottomOf="@id/et_birthdate"
+      app:layout_constraintEnd_toStartOf="@+id/sp_gender"/>
+
+  <Spinner
+      android:id="@+id/sp_gender"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:entries="@array/genders"
+      app:layout_constraintTop_toTopOf="@+id/tw_gender"
+      app:layout_constraintBottom_toBottomOf="@id/tw_gender"
+      app:layout_constraintEnd_toEndOf="parent"/>
+
+  <Button
+      android:id="@+id/btn_accept"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/accept_btn"
+      app:layout_constraintTop_toTopOf="@id/et_birthdate"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:onClick="onClickOpenActivityC" />
+
+  <TextView
+      android:id="@+id/tw_action_c_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="@dimen/header2_size"
+      app:layout_constraintBottom_toTopOf="@id/btn_accept"
+      app:layout_constraintTop_toBottomOf="@id/et_birthdate"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

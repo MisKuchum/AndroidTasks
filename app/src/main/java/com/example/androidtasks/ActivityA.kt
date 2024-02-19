@@ -45,6 +45,12 @@ class ActivityA : ComponentActivity() {
         }
 
         addTextChangedListeners()
+
+        btnToast.setOnClickListener {
+            Toast.makeText(applicationContext, "Съел тост: $toastCounter шт.", Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "Съел тост: $toastCounter шт.")
+            toastCounter++
+        }
     }
 
     override fun onStart() {

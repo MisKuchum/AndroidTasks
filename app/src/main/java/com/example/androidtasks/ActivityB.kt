@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,6 +24,7 @@ class ActivityB : AppCompatActivity() {
         setContentView(R.layout.activity_b)
         initViews()
         setTvOnClickListeners()
+        actionCTextView = findViewById(R.id.tw_action_c_text)
     }
 
     override fun onStart() {
@@ -57,7 +57,7 @@ class ActivityB : AppCompatActivity() {
         Log.d(TAG, "ActivityB is [onDestroy] now")
     }
 
-    fun onClickOpenActivityC(view: View) {
+    fun onClickOpenActivityC() {
         val intent = Intent(this, ActivityC::class.java)
         getResult.launch(intent)
     }
