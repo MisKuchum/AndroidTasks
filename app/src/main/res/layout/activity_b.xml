@@ -85,35 +85,67 @@
         app:layout_constraintBottom_toBottomOf="@id/tw_gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tw_gender" />
+  
+    <ImageView
+        android:id="@+id/iv_maks"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="@dimen/zero_dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/maks"
+        app:layout_constraintBottom_toTopOf="@id/tw_action_c_text"
+        app:layout_constraintEnd_toStartOf="@id/iv_dima"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_birthdate" />
+
+    <ImageView
+        android:id="@+id/iv_ilya"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.2"
+        android:scaleType="fitXY"
+        android:src="@drawable/ilya" />
+
+    <ImageView
+        android:id="@+id/iv_dima"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="@dimen/zero_dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dima"
+        app:layout_constraintBottom_toTopOf="@id/tw_action_c_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_maks"
+        app:layout_constraintTop_toBottomOf="@id/et_birthdate" />
 
     <TextView
         android:id="@+id/tv_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/tv_general_margin"
+        android:layout_marginBottom="5dp"
         android:background="@android:color/holo_green_light"
-        android:text="@string/label_green"
         android:tag="@string/tv_green_tag"
+        android:text="@string/label_green"
         android:textColor="@android:color/black"
         android:textSize="@dimen/header2_size"
         android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_accept" />
+        app:layout_constraintBottom_toTopOf="@id/tv_purple"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/tv_general_margin"
         android:layout_marginStart="@dimen/tv_general_margin"
+        android:layout_marginTop="@dimen/tv_general_margin"
+        android:layout_marginBottom="5dp"
         android:background="@android:color/holo_red_light"
-        android:text="@string/label_red"
         android:tag="@string/tv_red_tag"
+        android:text="@string/label_red"
         android:textColor="@android:color/black"
         android:textSize="@dimen/header2_size"
         android:textStyle="bold|italic"
-        app:layout_constraintStart_toEndOf="@id/tv_green"
-        app:layout_constraintTop_toBottomOf="@+id/btn_accept" />
+        app:layout_constraintBottom_toTopOf="@id/tv_purple"
+        app:layout_constraintStart_toEndOf="@id/tv_green" />
 
     <TextView
         android:id="@+id/tv_blue"
@@ -121,56 +153,57 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/tv_general_margin"
         android:layout_marginTop="@dimen/tv_general_margin"
+        android:layout_marginBottom="5dp"
         android:background="@android:color/holo_blue_bright"
-        android:text="@string/label_blue"
         android:tag="@string/tv_blue_tag"
+        android:text="@string/label_blue"
         android:textColor="@android:color/black"
         android:textSize="@dimen/header2_size"
         android:textStyle="bold|italic"
-        app:layout_constraintStart_toEndOf="@id/tv_red"
-        app:layout_constraintTop_toBottomOf="@+id/btn_accept" />
+        app:layout_constraintBottom_toTopOf="@id/tv_purple"
+        app:layout_constraintStart_toEndOf="@id/tv_red" />
 
     <TextView
         android:id="@+id/tv_orange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/tv_general_margin"
         android:layout_marginStart="@dimen/tv_general_margin"
+        android:layout_marginTop="@dimen/tv_general_margin"
+        android:layout_marginBottom="5dp"
         android:background="@android:color/holo_orange_light"
-        android:text="@string/label_orange"
         android:tag="@string/tv_orange_tag"
+        android:text="@string/label_orange"
         android:textColor="@android:color/black"
         android:textSize="@dimen/header2_size"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_accept" />
+        app:layout_constraintBottom_toTopOf="@id/tv_purple"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/tv_purple"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/tv_general_margin"
         android:background="@android:color/holo_purple"
-        android:text="@string/label_purple"
         android:tag="@string/tv_purple_tag"
+        android:text="@string/label_purple"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="@dimen/header2_size"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_blue" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_accept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:onClick="onClickOpenActivityC"
         android:text="@string/accept_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/et_birthdate" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tw_action_c_text"
