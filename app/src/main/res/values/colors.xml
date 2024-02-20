@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pink_light">#F086FC</color>
     <color name="pink_dark">#EB37FF</color>
+    <color name="custom_toast_background">#97A7FF</color>
 </resources>
