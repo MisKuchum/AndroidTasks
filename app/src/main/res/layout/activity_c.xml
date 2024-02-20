@@ -99,9 +99,95 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
         android:onClick="onClickInputButton"/>
 
+    <TextView
+        android:id="@+id/tv_experience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_experience_text"
+        android:textSize="@dimen/header2_size"
+        android:layout_marginTop="@dimen/middle_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_birthdate"/>
+
+    <RadioGroup
+        android:id="@+id/rg_experience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_experience">
+
+        <RadioButton
+            android:id="@+id/rb_s_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_s_experience_text"
+            android:checked="true"
+            android:textSize="@dimen/header2_size"
+            android:theme="@style/PinkColorPalette"/>
+
+        <RadioButton
+            android:id="@+id/rb_m_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_m_experience_text"
+            android:textSize="@dimen/header2_size"
+            android:layout_marginHorizontal="@dimen/little_margin"
+            android:theme="@style/BlueColorPalette"/>
+
+        <RadioButton
+            android:id="@+id/rb_l_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rb_l_experience_text"
+            android:textSize="@dimen/header2_size"
+            android:theme="@style/GreenColorPalette"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_hobby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_hobby_text"
+        android:textSize="@dimen/header2_size"
+        android:layout_marginTop="@dimen/middle_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rg_experience"/>
+
+    <CheckBox
+        android:id="@+id/cb_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_football_text"
+        android:textSize="@dimen/header2_size"
+        android:theme="@style/PinkColorPalette"
+        app:layout_constraintTop_toBottomOf="@id/tv_hobby"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/cb_volleyball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_volleyball_text"
+        android:textSize="@dimen/header2_size"
+        android:theme="@style/BlueColorPalette"
+        android:layout_marginHorizontal="@dimen/little_margin"
+        app:layout_constraintTop_toBottomOf="@id/tv_hobby"
+        app:layout_constraintStart_toEndOf="@+id/cb_football" />
+
+    <CheckBox
+        android:id="@+id/cb_basketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cb_basketball_text"
+        android:textSize="@dimen/header2_size"
+        android:theme="@style/GreenColorPalette"
+        app:layout_constraintTop_toBottomOf="@id/tv_hobby"
+        app:layout_constraintStart_toEndOf="@+id/cb_volleyball" />
+  
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
