@@ -15,7 +15,6 @@ import kotlin.random.Random
 
 class ActivityA : ComponentActivity() {
     private val TAG = "MyApp"
-    private val minPasswordLen = 8
     private lateinit var btnToast: Button
     private lateinit var etPhone: EditText
     private lateinit var etHeight: EditText
@@ -94,10 +93,18 @@ class ActivityA : ComponentActivity() {
 
         etPassword.addTextChangedListener {
             val etText = etPassword.text.toString()
+            var haveDigit = false
+            var haveUpperCase = false
+
+            etText.forEach {
+                if (!haveDigit && it.isDigit()) haveDigit = true
+                if (!haveUpperCase && it.isUpperCase()) haveUpperCase = true
+            }
+
             if (
-                etText.any() { it.isDigit() } &&
-                etText.any() { it.isUpperCase() } &&
-                etText.length > minPasswordLen
+                haveDigit &&
+                haveUpperCase &&
+                etText.length > MIN_PASSWORD_LEN
                 ) {
                 btnToast.visibility = View.VISIBLE
             }
@@ -110,5 +117,9 @@ class ActivityA : ComponentActivity() {
     private fun getRandomColor(): Int {
         val rnd = Random.Default
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+    }
+
+    companion object {
+        private const val MIN_PASSWORD_LEN = 8
     }
 }
