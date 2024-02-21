@@ -31,12 +31,6 @@ class ActivityA : ComponentActivity() {
         etHeight = findViewById(R.id.et_height)
         etPassword = findViewById(R.id.et_password)
 
-        etPhone.addTextChangedListener {
-            val rnd = Random.Default
-            val color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
-            etPhone.setTextColor(color)
-        }
-
         btnToast.setOnClickListener {
             Toast.makeText(applicationContext, "Съел тост: $toastCounter шт.", Toast.LENGTH_SHORT)
                 .show()
@@ -98,13 +92,14 @@ class ActivityA : ComponentActivity() {
 
             etText.forEach {
                 if (!haveDigit && it.isDigit()) haveDigit = true
-                if (!haveUpperCase && it.isUpperCase()) haveUpperCase = true
+                else if (!haveUpperCase && it.isUpperCase()) haveUpperCase = true
+                if (haveDigit && haveUpperCase) return@forEach
             }
 
             if (
                 haveDigit &&
                 haveUpperCase &&
-                etText.length > MIN_PASSWORD_LEN
+                etText.length >= MIN_PASSWORD_LEN
                 ) {
                 btnToast.visibility = View.VISIBLE
             }
