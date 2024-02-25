@@ -24,6 +24,15 @@
     <string name="et_phone_hint">Номер телефона</string>
     <string name="tv_height_text">Рост:</string>
     <string name="et_password_hint">Пароль</string>
+    <string name="cb_football_text">Футбол</string>
+    <string name="cb_volleyball_text">Волейбол</string>
+    <string name="cb_basketball_text">Баскетбол</string>
+    <string name="tv_experience_text">Стаж работы:</string>
+    <string name="rb_s_experience_text"><![CDATA[< 1 года]]></string>
+    <string name="rb_m_experience_text">1 - 2 года</string>
+    <string name="rb_l_experience_text"><![CDATA[> 2 лет]]></string>
+    <string name="tv_hobby_text">Хобби:</string>
+    <string name="tv_toast_text">Это я</string>
 
     <string-array name="genders">
         <item>Мужской</item>
