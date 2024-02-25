@@ -25,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/profile_photo"
+            android:layout_marginRight="@dimen/middle_margin"
             android:src="@drawable/my_photo" />
 
         <LinearLayout
@@ -33,26 +34,29 @@
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
-            <TextView
+            <EditText
+                android:id="@+id/et_second_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="@string/last_name"
+                android:hint="@string/et_second_name_hint"
                 android:textSize="@dimen/header2_size" />
 
-            <TextView
+            <EditText
+                android:id="@+id/et_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/first_name_margin"
                 android:gravity="center"
-                android:text="@string/first_name"
+                android:hint="@string/et_first_name_hint"
                 android:textSize="@dimen/header2_size" />
 
-            <TextView
+            <EditText
+                android:id="@+id/et_patronymic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="@string/patronymic"
+                android:hint="@string/et_patronymic_hint"
                 android:textSize="@dimen/header2_size" />
 
         </LinearLayout>

@@ -23,6 +23,9 @@ class ActivityA : ComponentActivity() {
     private lateinit var etHeight: EditText
     private lateinit var etPassword: EditText
     private lateinit var ivPhoto: ImageView
+    private lateinit var etFirstName: EditText
+    private lateinit var etSecondName: EditText
+    private lateinit var etPatronymic: EditText
     private var toastCounter = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,9 @@ class ActivityA : ComponentActivity() {
         etHeight = findViewById(R.id.et_height)
         etPassword = findViewById(R.id.et_password)
         ivPhoto = findViewById(R.id.iv_photo)
+        etFirstName = findViewById(R.id.et_first_name)
+        etSecondName = findViewById(R.id.et_second_name)
+        etPatronymic = findViewById(R.id.et_patronymic)
 
         etPhone.addTextChangedListener {
             val rnd = Random.Default
@@ -91,8 +97,12 @@ class ActivityA : ComponentActivity() {
     }
 
     fun onClickOpenActivityB(view: View) {
-        val intent = Intent(this, ActivityB::class.java)
-        startActivity(intent)
+        Intent (this, ActivityB::class.java).also {
+            it.putExtra(FIRST_NAME, etFirstName.text.toString())
+            it.putExtra(SECOND_NAME, etSecondName.text.toString())
+            it.putExtra(PATRONYMIC, etPatronymic.text.toString())
+            startActivity(it)
+        }
     }
 
     private fun addTextChangedListeners() {
@@ -132,8 +142,12 @@ class ActivityA : ComponentActivity() {
         val rnd = Random.Default
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
     }
-
+    
     companion object {
         private const val MIN_PASSWORD_LEN = 8
     }
 }
+
+const val FIRST_NAME = "FIRST_NAME"
+const val SECOND_NAME = "SECOND_NAME"
+const val PATRONYMIC = "PATRONYMIC"

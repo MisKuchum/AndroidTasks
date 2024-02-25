@@ -8,7 +8,7 @@
     tools:context=".ActivityB">
 
     <TextView
-        android:id="@+id/tw_second_profile"
+        android:id="@+id/tv_second_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/general_margin"
@@ -19,55 +19,55 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iw_profile_photo"
+        android:id="@+id/iv_profile_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingEnd="@dimen/image_padding_end"
         android:paddingBottom="@dimen/image_padding_bottom"
         android:src="@drawable/my_photo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tw_second_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_second_profile" />
 
     <TextView
-        android:id="@+id/tw_last_name"
+        android:id="@+id/tv_second_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/last_name"
         android:textSize="@dimen/header2_size"
-        app:layout_constraintStart_toEndOf="@+id/iw_profile_photo"
-        app:layout_constraintTop_toBottomOf="@+id/tw_second_profile" />
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_photo"
+        app:layout_constraintTop_toBottomOf="@+id/tv_second_profile" />
 
     <TextView
-        android:id="@+id/tw_first_name"
+        android:id="@+id/tv_first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/first_name_margin"
         android:text="@string/first_name"
         android:textSize="@dimen/header2_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iw_profile_photo"
-        app:layout_constraintTop_toBottomOf="@+id/tw_last_name" />
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_photo"
+        app:layout_constraintTop_toBottomOf="@+id/tv_second_name" />
 
     <TextView
-        android:id="@+id/tw_patronymic"
+        android:id="@+id/tv_patronymic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/patronymic"
         android:textSize="@dimen/header2_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tw_first_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_first_name" />
 
     <EditText
         android:id="@+id/et_birthdate"
         android:layout_width="@dimen/zero_dp"
         android:layout_height="wrap_content"
         android:hint="@string/birthdate"
-        app:layout_constraintEnd_toStartOf="@+id/tw_gender"
+        app:layout_constraintEnd_toStartOf="@+id/tv_gender"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iw_profile_photo" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo" />
 
     <TextView
-        android:id="@+id/tw_gender"
+        android:id="@+id/tv_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/general_margin"
@@ -82,9 +82,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:entries="@array/genders"
-        app:layout_constraintBottom_toBottomOf="@id/tw_gender"
+        app:layout_constraintBottom_toBottomOf="@id/tv_gender"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tw_gender" />
+        app:layout_constraintTop_toTopOf="@+id/tv_gender" />
   
     <ImageView
         android:id="@+id/iv_maks"
@@ -92,7 +92,7 @@
         android:layout_height="@dimen/zero_dp"
         android:scaleType="centerCrop"
         android:src="@drawable/maks"
-        app:layout_constraintBottom_toTopOf="@id/tw_action_c_text"
+        app:layout_constraintBottom_toTopOf="@id/tv_action_c_text"
         app:layout_constraintEnd_toStartOf="@id/iv_dima"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_birthdate" />
@@ -111,7 +111,7 @@
         android:layout_height="@dimen/zero_dp"
         android:scaleType="centerCrop"
         android:src="@drawable/dima"
-        app:layout_constraintBottom_toTopOf="@id/tw_action_c_text"
+        app:layout_constraintBottom_toTopOf="@id/tv_action_c_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_maks"
         app:layout_constraintTop_toBottomOf="@id/et_birthdate" />
@@ -206,7 +206,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tw_action_c_text"
+        android:id="@+id/tv_action_c_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/header2_size"
