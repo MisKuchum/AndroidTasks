@@ -26,7 +26,7 @@ class ActivityA : ComponentActivity() {
     private lateinit var etFirstName: EditText
     private lateinit var etSecondName: EditText
     private lateinit var etPatronymic: EditText
-    private var toastCounter = 0
+    private var toastCounter = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,14 +115,36 @@ class ActivityA : ComponentActivity() {
         }
 
         etPassword.addTextChangedListener {
-            if (btnToast.isVisible) btnToast.visibility = View.INVISIBLE
-            else btnToast.visibility = View.VISIBLE
+            val etText = etPassword.text.toString()
+            var haveDigit = false
+            var haveUpperCase = false
+
+            etText.forEach {
+                if (!haveDigit && it.isDigit()) haveDigit = true
+                else if (!haveUpperCase && it.isUpperCase()) haveUpperCase = true
+                if (haveDigit && haveUpperCase) return@forEach
+            }
+
+            if (
+                haveDigit &&
+                haveUpperCase &&
+                etText.length >= MIN_PASSWORD_LEN
+                ) {
+                btnToast.visibility = View.VISIBLE
+            }
+            else {
+                btnToast.visibility = View.INVISIBLE
+            }
         }
     }
 
     private fun getRandomColor(): Int {
         val rnd = Random.Default
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+    }
+    
+    companion object {
+        private const val MIN_PASSWORD_LEN = 8
     }
 }
 
