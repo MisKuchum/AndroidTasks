@@ -3,6 +3,8 @@ package com.example.androidtasks
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 
@@ -47,6 +49,10 @@ class ActivityC : AppCompatActivity() {
         super.onDestroy()
         Log.d(TAG, "ActivityC is [onDestroy] now")
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean = MyOptionsMenu().create(this, menu)
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = MyOptionsMenu().itemSelected(this, item)
 
     fun onClickInputButton(view: View) {
         intent.putExtra("input", etBirthdate.text.toString())
