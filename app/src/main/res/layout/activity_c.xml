@@ -109,7 +109,7 @@
         android:textSize="@dimen/header2_size"
         android:layout_marginTop="@dimen/middle_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_birthdate"/>
+        app:layout_constraintTop_toBottomOf="@id/btn_get_location"/>
 
     <RadioGroup
         android:id="@+id/rg_experience"
@@ -201,6 +201,33 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="@dimen/right_guideline" />
+
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_city_text"
+        android:textSize="@dimen/header2_size"
+        app:layout_constraintTop_toBottomOf="@id/et_birthdate"
+        app:layout_constraintBottom_toBottomOf="@id/et_city"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_city"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_city"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_birthdate" />
+
+    <Button
+        android:id="@+id/btn_get_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_get_location_text"
+        android:textSize="@dimen/header3_size"
+        app:layout_constraintTop_toBottomOf="@id/et_city"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
