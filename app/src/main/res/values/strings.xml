@@ -33,6 +33,9 @@
     <string name="rb_l_experience_text"><![CDATA[> 2 лет]]></string>
     <string name="tv_hobby_text">Хобби:</string>
     <string name="tv_toast_text">Это я</string>
+    <string name="et_second_name_hint">Фамилия</string>
+    <string name="et_first_name_hint">Имя</string>
+    <string name="et_patronymic_hint">Отчество</string>
 
     <string-array name="genders">
         <item>Мужской</item>

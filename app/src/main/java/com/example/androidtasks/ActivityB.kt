@@ -16,6 +16,9 @@ class ActivityB : AppCompatActivity() {
     private lateinit var blueTextView: TextView
     private lateinit var orangeTextView: TextView
     private lateinit var purpleTextView: TextView
+    private lateinit var firstNameTextView: TextView
+    private lateinit var secondNameTextView: TextView
+    private lateinit var patronymicTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,7 @@ class ActivityB : AppCompatActivity() {
         setContentView(R.layout.activity_b)
         initViews()
         setTvOnClickListeners()
+        setFioFromActivityA()
     }
 
     override fun onStart() {
@@ -72,12 +76,15 @@ class ActivityB : AppCompatActivity() {
         }
 
     private fun initViews() {
-        actionCTextView = findViewById(R.id.tw_action_c_text)
+        actionCTextView = findViewById(R.id.tv_action_c_text)
         greenTextView = findViewById(R.id.tv_green)
         redTextView = findViewById(R.id.tv_red)
         blueTextView = findViewById(R.id.tv_blue)
         orangeTextView = findViewById(R.id.tv_orange)
         purpleTextView = findViewById(R.id.tv_purple)
+        firstNameTextView = findViewById(R.id.tv_first_name)
+        secondNameTextView = findViewById(R.id.tv_second_name)
+        patronymicTextView = findViewById(R.id.tv_patronymic)
     }
 
     private fun setTvOnClickListeners() {
@@ -95,5 +102,15 @@ class ActivityB : AppCompatActivity() {
                 Log.d(TAG, tv.tag.toString())
             }
         }
+    }
+
+    private fun setFioFromActivityA() {
+        val firstName = intent.getStringExtra(FIRST_NAME)
+        val secondName = intent.getStringExtra(SECOND_NAME)
+        val patronymic = intent.getStringExtra(PATRONYMIC)
+
+        if (firstName != "") firstNameTextView.text = firstName
+        if (secondName != "") secondNameTextView.text = secondName
+        if (patronymic != "") patronymicTextView.text = patronymic
     }
 }

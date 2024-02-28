@@ -24,7 +24,9 @@ class ActivityA : ComponentActivity() {
     private lateinit var etHeight: EditText
     private lateinit var etPassword: EditText
     private lateinit var ivPhoto: ImageView
-    private var toastCounter = 0
+    private lateinit var etFirstName: EditText
+    private lateinit var etSecondName: EditText
+    private lateinit var etPatronymic: EditText
     private var hasAllRequiredPermissions = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,9 @@ class ActivityA : ComponentActivity() {
         etHeight = findViewById(R.id.et_height)
         etPassword = findViewById(R.id.et_password)
         ivPhoto = findViewById(R.id.iv_photo)
+        etFirstName = findViewById(R.id.et_first_name)
+        etSecondName = findViewById(R.id.et_second_name)
+        etPatronymic = findViewById(R.id.et_patronymic)
 
         etPhone.addTextChangedListener {
             val rnd = Random.Default
@@ -115,8 +120,12 @@ class ActivityA : ComponentActivity() {
 
     fun onClickOpenActivityB(view: View?) {
         if (hasAllRequiredPermissions) {
-            val intent = Intent(this, ActivityB::class.java)
-            startActivity(intent)
+            Intent (this, ActivityB::class.java).also {
+                it.putExtra(FIRST_NAME, etFirstName.text.toString())
+                it.putExtra(SECOND_NAME, etSecondName.text.toString())
+                it.putExtra(PATRONYMIC, etPatronymic.text.toString())
+                startActivity(it)
+            }
         } else {
             requestPermissions()
         }
@@ -132,8 +141,26 @@ class ActivityA : ComponentActivity() {
         }
 
         etPassword.addTextChangedListener {
-            if (btnToast.isVisible) btnToast.visibility = View.INVISIBLE
-            else btnToast.visibility = View.VISIBLE
+            val etText = etPassword.text.toString()
+            var haveDigit = false
+            var haveUpperCase = false
+
+            etText.forEach {
+                if (!haveDigit && it.isDigit()) haveDigit = true
+                else if (!haveUpperCase && it.isUpperCase()) haveUpperCase = true
+                if (haveDigit && haveUpperCase) return@forEach
+            }
+
+            if (
+                haveDigit &&
+                haveUpperCase &&
+                etText.length >= MIN_PASSWORD_LEN
+                ) {
+                btnToast.visibility = View.VISIBLE
+            }
+            else {
+                btnToast.visibility = View.INVISIBLE
+            }
         }
     }
 
@@ -169,4 +196,12 @@ class ActivityA : ComponentActivity() {
         if (hasAccessCoarseLocationPermission() && hasReadExternalStoragePermission())
             hasAllRequiredPermissions = true
     }
+    
+    companion object {
+        private const val MIN_PASSWORD_LEN = 8
+    }
 }
+
+const val FIRST_NAME = "FIRST_NAME"
+const val SECOND_NAME = "SECOND_NAME"
+const val PATRONYMIC = "PATRONYMIC"
