@@ -1,17 +1,18 @@
 package com.example.androidtasks
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import kotlin.random.Random
@@ -26,7 +27,7 @@ class ActivityA : ComponentActivity() {
     private lateinit var etFirstName: EditText
     private lateinit var etSecondName: EditText
     private lateinit var etPatronymic: EditText
-    private var toastCounter = 1
+    private var hasAllRequiredPermissions = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +65,8 @@ class ActivityA : ComponentActivity() {
         }
 
         addTextChangedListeners()
+
+        firstCheckPermissions()
     }
 
     override fun onStart() {
@@ -96,12 +99,35 @@ class ActivityA : ComponentActivity() {
         Log.d(TAG, "ActivityA is [onDestroy] now")
     }
 
-    fun onClickOpenActivityB(view: View) {
-        Intent (this, ActivityB::class.java).also {
-            it.putExtra(FIRST_NAME, etFirstName.text.toString())
-            it.putExtra(SECOND_NAME, etSecondName.text.toString())
-            it.putExtra(PATRONYMIC, etPatronymic.text.toString())
-            startActivity(it)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == 0 &&
+            grantResults.isNotEmpty()) {
+            if (grantResults.filter { result -> result == PackageManager.PERMISSION_GRANTED }.size == permissions.size) {
+                hasAllRequiredPermissions = true
+                onClickOpenActivityB(null)
+            }
+            else
+                Toast.makeText(applicationContext, "Для перехода на ActivityB необходимо принять все разрешения", Toast.LENGTH_LONG)
+                    .show()
+        }
+    }
+
+    fun onClickOpenActivityB(view: View?) {
+        if (hasAllRequiredPermissions) {
+            Intent (this, ActivityB::class.java).also {
+                it.putExtra(FIRST_NAME, etFirstName.text.toString())
+                it.putExtra(SECOND_NAME, etSecondName.text.toString())
+                it.putExtra(PATRONYMIC, etPatronymic.text.toString())
+                startActivity(it)
+            }
+        } else {
+            requestPermissions()
         }
     }
 
@@ -141,6 +167,34 @@ class ActivityA : ComponentActivity() {
     private fun getRandomColor(): Int {
         val rnd = Random.Default
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+    }
+
+    private fun hasAccessCoarseLocationPermission() =
+        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+    private fun hasReadExternalStoragePermission() =
+        ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+
+
+    private fun requestPermissions() {
+        var permissionsToRequest = mutableListOf<String>()
+
+        if (!hasAccessCoarseLocationPermission())
+            permissionsToRequest.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (!hasReadExternalStoragePermission())
+            permissionsToRequest.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+
+        Log.d(TAG, "${permissionsToRequest.toString()}")
+
+        if (permissionsToRequest.isNotEmpty())
+            ActivityCompat.requestPermissions(this, permissionsToRequest.toTypedArray(), 0)
+        else
+            hasAllRequiredPermissions = true
+    }
+
+    private fun firstCheckPermissions() {
+        if (hasAccessCoarseLocationPermission() && hasReadExternalStoragePermission())
+            hasAllRequiredPermissions = true
     }
     
     companion object {
