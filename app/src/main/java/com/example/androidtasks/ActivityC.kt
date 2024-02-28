@@ -2,9 +2,13 @@ package com.example.androidtasks
 
 import android.content.pm.PackageManager
 import android.location.Location
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -16,6 +20,7 @@ import android.location.Geocoder
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import java.util.Locale
+import android.widget.ImageView
 
 
 class ActivityC : AppCompatActivity() {
@@ -25,7 +30,8 @@ class ActivityC : AppCompatActivity() {
     private lateinit var etCity: EditText
     private lateinit var btnGetLocation: Button
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
+    private lateinit var ivProfilePhoto: ImageView
+  
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ActivityC is [onCreate] now")
@@ -34,6 +40,14 @@ class ActivityC : AppCompatActivity() {
         etBirthdate = findViewById<EditText>(R.id.et_birthdate)
         etCity = findViewById(R.id.et_city)
         btnGetLocation = findViewById(R.id.btn_get_location)
+        ivProfilePhoto = findViewById(R.id.iv_profile_photo)
+        
+        ivProfilePhoto.setOnClickListener {
+            Intent(Intent.ACTION_GET_CONTENT).also {
+                it.type = "image/*"
+                startActivityForResult(it, 0)
+            }
+        }
 
         firstCheckPermissions()
 
@@ -51,6 +65,15 @@ class ActivityC : AppCompatActivity() {
 
         btnGetLocation.setOnClickListener {
             setLocationDialog.show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode == Activity.RESULT_OK && requestCode == 0) {
+            val uri = data?.data
+            ivProfilePhoto.setImageURI(uri)
         }
     }
 
@@ -102,6 +125,9 @@ class ActivityC : AppCompatActivity() {
                     .show()
         }
     }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean = MyOptionsMenu().create(this, menu)
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = MyOptionsMenu().itemSelected(this, item)
 
     fun onClickInputButton(view: View) {
         intent.putExtra("input", etBirthdate.text.toString())
