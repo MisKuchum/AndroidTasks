@@ -6,18 +6,21 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import kotlin.random.Random
 
-class ActivityA : ComponentActivity() {
+class ActivityA : AppCompatActivity() {
     private val TAG = "MyApp"
     private lateinit var btnToast: Button
     private lateinit var etPhone: EditText
@@ -99,6 +102,10 @@ class ActivityA : ComponentActivity() {
         Log.d(TAG, "ActivityA is [onDestroy] now")
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean = MyOptionsMenu().create(this, menu)
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = MyOptionsMenu().itemSelected(this, item)
+    
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,

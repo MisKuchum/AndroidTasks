@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -60,6 +62,10 @@ class ActivityB : AppCompatActivity() {
         super.onDestroy()
         Log.d(TAG, "ActivityB is [onDestroy] now")
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean = MyOptionsMenu().create(this, menu)
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = MyOptionsMenu().itemSelected(this, item)
 
     fun onClickOpenActivityC(view: View) {
         val intent = Intent(this, ActivityC::class.java)
