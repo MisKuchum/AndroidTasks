@@ -21,4 +21,6 @@
     <dimen name="middle_margin">10dp</dimen>
     <dimen name="little_margin">5dp</dimen>
     <dimen name="iv_notification_size">50dp</dimen>
+    <dimen name="iv_profile_photo_width">150dp</dimen>
+    <dimen name="iv_profile_photo_height">200dp</dimen>
 </resources>

@@ -1,21 +1,42 @@
 package com.example.androidtasks
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 
 
 class ActivityC : AppCompatActivity() {
     private val TAG = "MyApp"
     private lateinit var etBirthdate: EditText
+    private lateinit var ivProfilePhoto: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ActivityC is [onCreate] now")
 
         setContentView(R.layout.activity_c)
         etBirthdate = findViewById<EditText>(R.id.et_birthdate)
+        ivProfilePhoto = findViewById(R.id.iv_profile_photo)
+
+        ivProfilePhoto.setOnClickListener {
+            Intent(Intent.ACTION_GET_CONTENT).also {
+                it.type = "image/*"
+                startActivityForResult(it, 0)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode == Activity.RESULT_OK && requestCode == 0) {
+            val uri = data?.data
+            ivProfilePhoto.setImageURI(uri)
+        }
     }
 
     override fun onStart() {
@@ -53,6 +74,4 @@ class ActivityC : AppCompatActivity() {
         setResult(RESULT_OK, intent)
         finish()
     }
-
-
 }
