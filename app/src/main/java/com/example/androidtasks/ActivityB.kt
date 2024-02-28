@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -66,7 +67,7 @@ class ActivityB : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = MyOptionsMenu().itemSelected(this, item)
 
-    fun onClickOpenActivityC() {
+    fun onClickOpenActivityC(view: View) {
         val intent = Intent(this, ActivityC::class.java)
         getResult.launch(intent)
     }
