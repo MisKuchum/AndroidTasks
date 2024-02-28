@@ -36,6 +36,8 @@
     <string name="et_second_name_hint">Фамилия</string>
     <string name="et_first_name_hint">Имя</string>
     <string name="et_patronymic_hint">Отчество</string>
+    <string name="tv_city_text">Город:</string>
+    <string name="btn_get_location_text">Получить местоположение</string>
 
     <string-array name="genders">
         <item>Мужской</item>
