@@ -70,7 +70,7 @@ class ActivityA : ComponentActivity() {
 
         addTextChangedListeners()
 
-        val difficultyArray = listOf("Легко", "Средне", "Сложно")
+        val difficultyArray = resources.getStringArray(R.array.difficulty)
         val spDifficultyAdapter = ArrayAdapter(
             this,
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
@@ -84,11 +84,11 @@ class ActivityA : ComponentActivity() {
                 position: Int,
                 id: Long
             ) {
-                var power = ""
-                when(parent?.getItemAtPosition(position).toString()) {
-                    "Сложно" -> power = "Хиленький"
-                    "Средне" -> power = "Ну норм"
-                    "Легко" -> power = "Перебор"
+                var power = when((view as TextView).text.toString()) {
+                    "Сложно" -> "Хиленький"
+                    "Средне" -> "Ну норм"
+                    "Легко"  -> "Перебор"
+                    else     -> "Инопланетянин какой-то"
                 }
 
                 Toast.makeText(this@ActivityA, power, Toast.LENGTH_SHORT).show()

@@ -152,7 +152,7 @@
             android:id="@+id/tv_bench_press"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Жим лёжа (80кг):"
+            android:text="@string/tv_bench_press"
             android:textSize="@dimen/header2_size" />
 
         <Spinner
