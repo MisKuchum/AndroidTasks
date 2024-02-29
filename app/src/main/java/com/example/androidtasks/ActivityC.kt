@@ -4,18 +4,52 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 
 
 class ActivityC : AppCompatActivity() {
     private val TAG = "MyApp"
     private lateinit var etBirthdate: EditText
+    private lateinit var spBenchPress: Spinner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ActivityC is [onCreate] now")
 
         setContentView(R.layout.activity_c)
         etBirthdate = findViewById<EditText>(R.id.et_birthdate)
+        spBenchPress = findViewById(R.id.sp_bench_press)
+
+        val difficultyArray = resources.getStringArray(R.array.difficulty)
+        val spDifficultyAdapter = ArrayAdapter(
+            this,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            difficultyArray)
+        spBenchPress.adapter = spDifficultyAdapter
+
+        spBenchPress.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                var power = when((view as TextView).text.toString()) {
+                    "Сложно" -> "Хиленький"
+                    "Средне" -> "Ну норм"
+                    "Легко"  -> "Перебор"
+                    else     -> "Инопланетянин какой-то"
+                }
+
+                Toast.makeText(this@ActivityC, power, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
+        }
     }
 
     override fun onStart() {

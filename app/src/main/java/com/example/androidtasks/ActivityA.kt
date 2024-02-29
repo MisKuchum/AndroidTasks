@@ -6,12 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -29,7 +26,6 @@ class ActivityA : ComponentActivity() {
     private lateinit var etFirstName: EditText
     private lateinit var etSecondName: EditText
     private lateinit var etPatronymic: EditText
-    private lateinit var spBenchPress: Spinner
     private var toastCounter = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +41,6 @@ class ActivityA : ComponentActivity() {
         etFirstName = findViewById(R.id.et_first_name)
         etSecondName = findViewById(R.id.et_second_name)
         etPatronymic = findViewById(R.id.et_patronymic)
-        spBenchPress = findViewById(R.id.sp_bench_press)
 
         etPhone.addTextChangedListener {
             val rnd = Random.Default
@@ -69,34 +64,6 @@ class ActivityA : ComponentActivity() {
         }
 
         addTextChangedListeners()
-
-        val difficultyArray = resources.getStringArray(R.array.difficulty)
-        val spDifficultyAdapter = ArrayAdapter(
-            this,
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-            difficultyArray)
-        spBenchPress.adapter = spDifficultyAdapter
-
-        spBenchPress.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                var power = when((view as TextView).text.toString()) {
-                    "Сложно" -> "Хиленький"
-                    "Средне" -> "Ну норм"
-                    "Легко"  -> "Перебор"
-                    else     -> "Инопланетянин какой-то"
-                }
-
-                Toast.makeText(this@ActivityA, power, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) { }
-        }
-
     }
 
     override fun onStart() {
