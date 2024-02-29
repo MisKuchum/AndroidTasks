@@ -11,13 +11,17 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.view.isVisible
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlin.random.Random
 
 class ActivityA : AppCompatActivity() {
@@ -30,7 +34,12 @@ class ActivityA : AppCompatActivity() {
     private lateinit var etFirstName: EditText
     private lateinit var etSecondName: EditText
     private lateinit var etPatronymic: EditText
+    private lateinit var rvFriends: RecyclerView
+    private lateinit var tvActivityName: TextView
+    private lateinit var flProfileButton: FrameLayout
+
     private var hasAllRequiredPermissions = false
+    private var toastCounter = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +54,9 @@ class ActivityA : AppCompatActivity() {
         etFirstName = findViewById(R.id.et_first_name)
         etSecondName = findViewById(R.id.et_second_name)
         etPatronymic = findViewById(R.id.et_patronymic)
+        rvFriends = findViewById(R.id.rv_friends)
+        tvActivityName = findViewById(R.id.tv_activity_name)
+        flProfileButton = findViewById(R.id.fl_profile_button)
 
         etPhone.addTextChangedListener {
             val rnd = Random.Default
@@ -60,16 +72,56 @@ class ActivityA : AppCompatActivity() {
         }
 
         ivPhoto.setOnClickListener {
-            Toast(this).apply {
-                duration = Toast.LENGTH_SHORT
-                view = layoutInflater.inflate(R.layout.custom_toast, null)
-                show()
+            if (tvActivityName.text == "Мой профиль") {
+                Toast(this).apply {
+                    duration = Toast.LENGTH_SHORT
+                    view = layoutInflater.inflate(R.layout.custom_toast, null)
+                    show()
+                }
             }
         }
 
         addTextChangedListeners()
 
         firstCheckPermissions()
+
+        var btnProfile = Button(this)
+        btnProfile.text = "Профиль"
+
+        rvFriends.layoutManager = LinearLayoutManager(this)
+
+        val friendsAdapter = FriendsRecyclerViewAdapter(getFriendsList())
+
+        friendsAdapter.setOnClickListener(object :
+            FriendsRecyclerViewAdapter.OnClickListener {
+            override fun onClick(position: Int, friend: FriendItem) {
+                changeProfileValues(friend)
+                if (tvActivityName.text == "Мой профиль") {
+                    flProfileButton.addView(btnProfile)
+                    tvActivityName.text = "Друг"
+                }
+            }
+        })
+
+        rvFriends.adapter = friendsAdapter
+
+        btnProfile.setOnClickListener {
+            changeProfileValues(
+                FriendItem("Михаил", "Кучумов", "Юрьевич", R.drawable.my_photo),
+            )
+            flProfileButton.removeView(btnProfile)
+            tvActivityName.text = "Мой профиль"
+        }
+
+        val itemDecorator = DividerItemDecoration(rvFriends.context, DividerItemDecoration.VERTICAL)
+        itemDecorator.setDrawable(
+            ContextCompat.getDrawable(
+                rvFriends.context,
+                R.drawable.divider
+            )!!
+        )
+
+        rvFriends.addItemDecoration(itemDecorator)
     }
 
     override fun onStart() {
@@ -104,8 +156,9 @@ class ActivityA : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean = MyOptionsMenu().create(this, menu)
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = MyOptionsMenu().itemSelected(this, item)
-    
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        MyOptionsMenu().itemSelected(this, item)
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -114,20 +167,24 @@ class ActivityA : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == 0 &&
-            grantResults.isNotEmpty()) {
+            grantResults.isNotEmpty()
+        ) {
             if (grantResults.filter { result -> result == PackageManager.PERMISSION_GRANTED }.size == permissions.size) {
                 hasAllRequiredPermissions = true
                 onClickOpenActivityB(null)
-            }
-            else
-                Toast.makeText(applicationContext, "Для перехода на ActivityB необходимо принять все разрешения", Toast.LENGTH_LONG)
+            } else
+                Toast.makeText(
+                    applicationContext,
+                    "Для перехода на ActivityB необходимо принять все разрешения",
+                    Toast.LENGTH_LONG
+                )
                     .show()
         }
     }
 
     fun onClickOpenActivityB(view: View?) {
         if (hasAllRequiredPermissions) {
-            Intent (this, ActivityB::class.java).also {
+            Intent(this, ActivityB::class.java).also {
                 it.putExtra(FIRST_NAME, etFirstName.text.toString())
                 it.putExtra(SECOND_NAME, etSecondName.text.toString())
                 it.putExtra(PATRONYMIC, etPatronymic.text.toString())
@@ -162,10 +219,9 @@ class ActivityA : AppCompatActivity() {
                 haveDigit &&
                 haveUpperCase &&
                 etText.length >= MIN_PASSWORD_LEN
-                ) {
+            ) {
                 btnToast.visibility = View.VISIBLE
-            }
-            else {
+            } else {
                 btnToast.visibility = View.INVISIBLE
             }
         }
@@ -177,10 +233,16 @@ class ActivityA : AppCompatActivity() {
     }
 
     private fun hasAccessCoarseLocationPermission() =
-        ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
 
     private fun hasReadExternalStoragePermission() =
-        ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+        ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
 
 
     private fun requestPermissions() {
@@ -203,7 +265,31 @@ class ActivityA : AppCompatActivity() {
         if (hasAccessCoarseLocationPermission() && hasReadExternalStoragePermission())
             hasAllRequiredPermissions = true
     }
-    
+
+    private fun getFriendsList(): List<FriendItem> {
+        return listOf(
+            FriendItem("Максим", "Соколов", "Батькович", R.drawable.maks),
+            FriendItem("Дима", "Трифонов", "Батькович", R.drawable.dima),
+            FriendItem("Илья", "Гущин", "Батькович", R.drawable.ilya),
+            FriendItem("Саша", "Сашин", "Александрович", R.drawable.photo_template),
+            FriendItem("Коля", "Николаенко", "Николаевич", R.drawable.photo_template),
+            FriendItem("Ваня", "Иванов", "Иванович", R.drawable.photo_template),
+            FriendItem("Леша", "Алексеев", "Алексеевич", R.drawable.photo_template),
+            FriendItem("Данил", "Данилов", "Данилович", R.drawable.photo_template),
+            FriendItem("Антон", "Антонов", "Антонович", R.drawable.photo_template),
+            FriendItem("Серёжа", "Сергеев", "Сергеевич", R.drawable.photo_template),
+            FriendItem("Сёма", "Семёнов", "Семёнович", R.drawable.photo_template),
+            FriendItem("Никита", "Никитин", "Никитич", R.drawable.photo_template),
+        )
+    }
+
+    private fun changeProfileValues(newProfile: FriendItem) {
+        etFirstName.setText(newProfile.firstName)
+        etSecondName.setText(newProfile.secondName)
+        etPatronymic.setText(newProfile.patronymic)
+        ivPhoto.setImageResource(newProfile.photo)
+    }
+
     companion object {
         private const val MIN_PASSWORD_LEN = 8
     }
