@@ -92,16 +92,13 @@ class ActivityA : AppCompatActivity() {
 
         val friendsAdapter = FriendsRecyclerViewAdapter(getFriendsList())
 
-        friendsAdapter.setOnClickListener(object :
-            FriendsRecyclerViewAdapter.OnClickListener {
-            override fun onClick(position: Int, friend: FriendItem) {
-                changeProfileValues(friend)
-                if (tvActivityName.text == "Мой профиль") {
-                    flProfileButton.addView(btnProfile)
-                    tvActivityName.text = "Друг"
-                }
+        friendsAdapter.setOnClickListener { _, friend ->
+            changeProfileValues(friend)
+            if (tvActivityName.text == "Мой профиль") {
+                flProfileButton.addView(btnProfile)
+                tvActivityName.text = "Друг"
             }
-        })
+        }
 
         rvFriends.adapter = friendsAdapter
 

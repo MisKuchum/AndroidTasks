@@ -40,7 +40,7 @@ class FriendsRecyclerViewAdapter(
         this.onClickListener = onClickListener
     }
 
-    interface OnClickListener {
+    fun interface OnClickListener {
         fun onClick(position: Int, friend: FriendItem)
     }
 }
