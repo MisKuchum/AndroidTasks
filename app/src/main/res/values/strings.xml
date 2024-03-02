@@ -38,6 +38,7 @@
     <string name="et_patronymic_hint">Отчество</string>
     <string name="tv_city_text">Город:</string>
     <string name="btn_get_location_text">Получить местоположение</string>
+    <string name="btn_show_activity_d_text">Фрагменты</string>
 
     <string-array name="genders">
         <item>Мужской</item>

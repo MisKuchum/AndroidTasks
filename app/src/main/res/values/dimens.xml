@@ -23,4 +23,6 @@
     <dimen name="iv_notification_size">50dp</dimen>
     <dimen name="iv_profile_photo_width">150dp</dimen>
     <dimen name="iv_profile_photo_height">200dp</dimen>
+    <dimen name="btn_background_radius">5dp</dimen>
+    <dimen name="btn_background_width">2dp</dimen>
 </resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityD">
+
+    <fragment
+        android:id="@+id/fragment_first"
+        android:name="com.example.androidtasks.FirstFragment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero_dp"
+        android:layout_weight="1" />
+
+    <fragment
+        android:id="@+id/fragment_second"
+        android:name="com.example.androidtasks.SecondFragment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero_dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
