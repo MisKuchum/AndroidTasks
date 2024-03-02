@@ -19,13 +19,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/iv_profile_photo"
+        android:layout_width="@dimen/iv_profile_photo_width"
+        android:layout_height="@dimen/iv_profile_photo_height"
         android:paddingBottom="@dimen/general_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tw_second_profile"
-        app:srcCompat="@drawable/my_photo" />
+        app:srcCompat="@drawable/photo_template" />
 
     <TextView
         android:id="@+id/textView2"
@@ -46,7 +46,7 @@
         android:textSize="@dimen/header2_size"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/iv_profile_photo"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:entries="@array/genders"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo" />
 
     <TextView
         android:id="@+id/textView5"
@@ -109,7 +109,7 @@
         android:textSize="@dimen/header2_size"
         android:layout_marginTop="@dimen/middle_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_birthdate"/>
+        app:layout_constraintTop_toBottomOf="@id/btn_get_location"/>
 
     <RadioGroup
         android:id="@+id/rg_experience"
@@ -220,5 +220,32 @@
         app:layout_constraintTop_toTopOf="@id/tv_bench_press"
         app:layout_constraintBottom_toBottomOf="@id/tv_bench_press"
         app:layout_constraintStart_toEndOf="@id/tv_bench_press"/>
+
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_city_text"
+        android:textSize="@dimen/header2_size"
+        app:layout_constraintTop_toBottomOf="@id/et_birthdate"
+        app:layout_constraintBottom_toBottomOf="@id/et_city"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_city"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tv_city"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_birthdate" />
+
+    <Button
+        android:id="@+id/btn_get_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_get_location_text"
+        android:textSize="@dimen/header3_size"
+        app:layout_constraintTop_toBottomOf="@id/et_city"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
