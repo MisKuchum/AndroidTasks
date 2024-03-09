@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-open class DataViewModel : ViewModel() {
+class DataViewModel : ViewModel() {
     private var _color = MutableLiveData<String>()
     var color: LiveData<String> = _color
 
