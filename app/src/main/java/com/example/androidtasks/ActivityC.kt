@@ -35,16 +35,16 @@ class ActivityC : AppCompatActivity() {
             }
         }
 
-        setCurrentFragment(ProfileFragment())
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId) {
-                R.id.mi_profile  -> setCurrentFragment(ProfileFragment())
-                R.id.mi_work -> setCurrentFragment(WorkFragment())
-                R.id.mi_hobby -> setCurrentFragment(HobbyFragment())
+                R.id.mi_profile  -> changeFragment(ProfileFragment(), ProfileFragment.javaClass.name)
+                R.id.mi_work -> changeFragment(WorkFragment(), WorkFragment.javaClass.name)
+                R.id.mi_hobby -> changeFragment(HobbyFragment(), HobbyFragment.javaClass.name)
             }
             true
         }
 
+        changeFragment(ProfileFragment(), ProfileFragment.javaClass.name)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -95,10 +95,21 @@ class ActivityC : AppCompatActivity() {
         finish()
     }
 
-    private fun setCurrentFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fl_fragments, fragment)
-            commit()
-        }
+    private fun changeFragment(fragment: Fragment, fragmentTag: String) {
+        val transaction = supportFragmentManager.beginTransaction()
+
+        val currentFragment = supportFragmentManager.primaryNavigationFragment
+        if (currentFragment != null)
+            transaction.hide(currentFragment)
+
+        var tempFragment = supportFragmentManager.findFragmentByTag(fragmentTag)
+        if (tempFragment == null) {
+            tempFragment = fragment
+            transaction.add(R.id.fl_fragments, tempFragment, fragmentTag)
+        } else
+            transaction.show(tempFragment)
+
+        transaction.setPrimaryNavigationFragment(tempFragment)
+        transaction.commit()
     }
 }
