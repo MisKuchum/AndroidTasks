@@ -1,14 +1,14 @@
 package com.example.androidtasks
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 open class DataViewModel : ViewModel() {
-    val colorMessage: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
-    }
+    private var _color = MutableLiveData<String>()
+    var color: LiveData<String> = _color
 
-    val photoMessage: MutableLiveData<String> by lazy {
-        MutableLiveData<String>()
+    fun setColor(colorString: String) {
+        _color.value = colorString
     }
 }

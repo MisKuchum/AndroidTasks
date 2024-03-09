@@ -14,9 +14,17 @@ import androidx.lifecycle.LifecycleOwner
 import java.lang.Exception
 
 class SecondFragment : Fragment() {
+    private var photoUriPath: String? = null
 
     private val dataModel: DataViewModel by activityViewModels()
     private lateinit var ivPhoto: ImageView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            photoUriPath = it.getString(PHOTO_URI_PATH)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,23 +38,25 @@ class SecondFragment : Fragment() {
 
         ivPhoto = view.findViewById(R.id.iv_photo)
 
-        dataModel.colorMessage.observe(activity as LifecycleOwner) {
+        if (!photoUriPath.isNullOrEmpty())
+            ivPhoto.setImageURI(Uri.parse(photoUriPath))
+
+        dataModel.color.observe(viewLifecycleOwner) {
             try {
                 view.setBackgroundColor(Color.parseColor(it))
             } catch (e: Exception) {
                 Toast.makeText(activity, "Некорректный цвет", Toast.LENGTH_SHORT).show()
             }
         }
-
-        dataModel.photoMessage.observe(activity as LifecycleOwner) {
-            if (it.isNotEmpty()) {
-                ivPhoto.setImageURI(Uri.parse(it))
-            }
-        }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = SecondFragment()
+        fun newInstance(photoUriPath: String) =
+            SecondFragment().apply {
+                arguments = Bundle().apply {
+                    putString(PHOTO_URI_PATH, photoUriPath)
+                }
+            }
     }
 }

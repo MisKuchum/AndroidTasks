@@ -26,7 +26,7 @@ class FirstFragment : Fragment() {
         etColor = view.findViewById(R.id.et_color)
 
         btnEditColor.setOnClickListener {
-            dataModel.colorMessage.value = etColor.text.toString()
+            dataModel.setColor(etColor.text.toString())
         }
         super.onViewCreated(view, savedInstanceState)
     }

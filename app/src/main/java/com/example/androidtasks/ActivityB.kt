@@ -80,6 +80,8 @@ class ActivityB : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == 0) {
             if (data?.data != null)
                 photoUriPath = data.data.toString()
+            else
+                photoUriPath = ""
         } else
             photoUriPath = ""
 

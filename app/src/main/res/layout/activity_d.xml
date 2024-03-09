@@ -6,16 +6,14 @@
     android:orientation="vertical"
     tools:context=".ActivityD">
 
-    <fragment
-        android:id="@+id/fragment_first"
-        android:name="com.example.androidtasks.FirstFragment"
+    <FrameLayout
+        android:id="@+id/fl_first_fragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero_dp"
         android:layout_weight="1" />
 
-    <fragment
-        android:id="@+id/fragment_second"
-        android:name="com.example.androidtasks.SecondFragment"
+    <FrameLayout
+        android:id="@+id/fl_second_fragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/zero_dp"
         android:layout_weight="1" />
