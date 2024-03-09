@@ -13,10 +13,4 @@ class WorkFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_work, container, false)
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            WorkFragment().apply { }
-    }
 }
