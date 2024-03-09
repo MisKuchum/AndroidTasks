@@ -1,9 +1,12 @@
 package com.example.androidtasks
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -18,6 +21,8 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.drawerlayout.widget.DrawerLayout
@@ -29,6 +34,10 @@ import kotlin.random.Random
 
 class ActivityA : AppCompatActivity() {
     private val TAG = "MyApp"
+    private val CHANNEL_ID = "channelID"
+    private val CHANNEL_NAME = "onCreate/onAppBackgrounded"
+    private val NOTIFICATION_ID = 0
+
     private lateinit var btnToast: Button
     private lateinit var etPhone: EditText
     private lateinit var etHeight: EditText
@@ -46,6 +55,8 @@ class ActivityA : AppCompatActivity() {
 
     private var hasAllRequiredPermissions = false
     private var toastCounter = 1
+    private var hasNotificationsPermission = false
+    private var isStartNewActivity = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,9 +152,13 @@ class ActivityA : AppCompatActivity() {
                 R.id.mi_activity_c -> Intent(this, ActivityC::class.java)
                 else -> Intent(this, ActivityA::class.java)
             }
+            isStartNewActivity = true
             startActivity(intent)
             true
         }
+
+        createNotificationChannel()
+        postNotification(NotificationMode.ON_START)
     }
 
     override fun onStart() {
@@ -159,11 +174,14 @@ class ActivityA : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "ActivityA is [onResume] now")
+        isStartNewActivity = false
     }
 
     override fun onPause() {
         super.onPause()
         Log.d(TAG, "ActivityA is [onPause] now")
+        if (!isStartNewActivity)
+            postNotification(NotificationMode.ON_APP_BACKGROUNDED)
     }
 
     override fun onStop() {
@@ -206,10 +224,21 @@ class ActivityA : AppCompatActivity() {
                 )
                     .show()
         }
+
+        if (requestCode == 1 &&
+            grantResults.isNotEmpty()
+        ) {
+            if (grantResults.all{ result -> result == PackageManager.PERMISSION_GRANTED }) {
+                hasNotificationsPermission = true
+            }
+            else
+                Log.d(TAG, "Нет разрешения на уведомления")
+        }
     }
 
     fun onClickOpenActivityB(view: View?) {
         if (hasAllRequiredPermissions) {
+            isStartNewActivity = true
             Intent(this, ActivityB::class.java).also {
                 it.putExtra(FIRST_NAME, etFirstName.text.toString())
                 it.putExtra(SECOND_NAME, etSecondName.text.toString())
@@ -218,6 +247,17 @@ class ActivityA : AppCompatActivity() {
             }
         } else {
             requestPermissions()
+        }
+    }
+
+    fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_DEFAULT).apply {
+
+            }
+            val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            manager.createNotificationChannel(channel)
         }
     }
 
@@ -270,6 +310,11 @@ class ActivityA : AppCompatActivity() {
             Manifest.permission.READ_EXTERNAL_STORAGE
         ) == PackageManager.PERMISSION_GRANTED
 
+    private fun hasPostNotificationsPermission() =
+        ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED
 
     private fun requestPermissions() {
         var permissionsToRequest = mutableListOf<String>()
@@ -314,6 +359,36 @@ class ActivityA : AppCompatActivity() {
         etSecondName.setText(newProfile.secondName)
         etPatronymic.setText(newProfile.patronymic)
         ivPhoto.setImageResource(newProfile.photo)
+    }
+
+    private fun requestPostNotificationPermission() {
+        if (!hasPostNotificationsPermission()) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
+        }
+        else
+            hasNotificationsPermission = true
+    }
+
+    private fun postNotification(notificationMode: NotificationMode) {
+        val notificationText = when(notificationMode) {
+            NotificationMode.ON_START -> "Приложение запущено"
+            NotificationMode.ON_APP_BACKGROUNDED -> "Приложение свернуто"
+        }
+
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Важное уведомление")
+            .setContentText(notificationText)
+            .setSmallIcon(R.drawable.ic_notification)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
+
+        val notificationManager = NotificationManagerCompat.from(this)
+
+        requestPostNotificationPermission()
+        if (hasNotificationsPermission)
+            notificationManager.notify(NOTIFICATION_ID, notification)
+        else
+            requestPostNotificationPermission()
     }
 
     companion object {
