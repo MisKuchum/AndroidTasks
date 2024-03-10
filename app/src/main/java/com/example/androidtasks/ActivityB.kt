@@ -26,6 +26,10 @@ class ActivityB : AppCompatActivity() {
     private lateinit var patronymicTextView: TextView
     private lateinit var btnShowActivityD: Button
     private lateinit var photoUriPath: String
+    private lateinit var btnStartBoundService: Button
+    private lateinit var btnStopBoundService: Button
+    private lateinit var btnStartForegroundService: Button
+    private lateinit var btnStopForegroundService: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +46,8 @@ class ActivityB : AppCompatActivity() {
                 startActivityForResult(it, 0)
             }
         }
+
+        setServiceButtonsOnClickListeners()
     }
 
     override fun onStart() {
@@ -121,6 +127,10 @@ class ActivityB : AppCompatActivity() {
         secondNameTextView = findViewById(R.id.tv_second_name)
         patronymicTextView = findViewById(R.id.tv_patronymic)
         btnShowActivityD = findViewById(R.id.btn_show_activity_d)
+        btnStartBoundService = findViewById(R.id.btn_start_bound_service)
+        btnStopBoundService = findViewById(R.id.btn_stop_bound_service)
+        btnStartForegroundService = findViewById(R.id.btn_start_foreground_service)
+        btnStopForegroundService = findViewById(R.id.btn_stop_foreground_service)
     }
 
     private fun setTvOnClickListeners() {
@@ -148,6 +158,29 @@ class ActivityB : AppCompatActivity() {
         if (firstName != "") firstNameTextView.text = firstName
         if (secondName != "") secondNameTextView.text = secondName
         if (patronymic != "") patronymicTextView.text = patronymic
+    }
+
+    private fun setServiceButtonsOnClickListeners() {
+        btnStartBoundService.setOnClickListener {
+            Intent(this, BoundService::class.java).also {
+                startService(it)
+            }
+        }
+        btnStopBoundService.setOnClickListener {
+            Intent(this, BoundService::class.java).also {
+                stopService(it)
+            }
+        }
+        btnStartForegroundService.setOnClickListener {
+            Intent(this, ForegroundService::class.java).also {
+                startService(it)
+            }
+        }
+        btnStopForegroundService.setOnClickListener {
+            Intent(this, ForegroundService::class.java).also {
+                stopService(it)
+            }
+        }
     }
 }
 

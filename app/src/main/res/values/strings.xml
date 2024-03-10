@@ -47,6 +47,10 @@
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>
     <string name="tv_header_text">Activities</string>
+    <string name="tv_bound_service_text">BoundService:</string>
+    <string name="start_text">Старт</string>
+    <string name="stop_text">Стоп</string>
+    <string name="tv_foreground_service_text">ForegroundService:</string>
 
     <string-array name="genders">
         <item>Мужской</item>

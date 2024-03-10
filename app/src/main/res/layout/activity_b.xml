@@ -11,7 +11,6 @@
         android:id="@+id/tv_second_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/general_margin"
         android:text="@string/second_profile"
         android:textSize="@dimen/header1_size"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +84,7 @@
         app:layout_constraintBottom_toBottomOf="@id/tv_gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_gender" />
-  
+
     <ImageView
         android:id="@+id/iv_maks"
         android:layout_width="@dimen/zero_dp"
@@ -223,5 +222,63 @@
         app:layout_constraintBottom_toTopOf="@id/btn_accept"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_bound_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_bound_service_text"
+        android:textSize="@dimen/header3_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/tv_second_profile" />
+
+    <Button
+        android:id="@+id/btn_start_bound_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:layout_marginBottom="@dimen/middle_margin"
+        android:text="@string/start_text"
+        app:layout_constraintStart_toEndOf="@id/iv_profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/tv_bound_service" />
+
+    <Button
+        android:id="@+id/btn_stop_bound_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:text="@string/stop_text"
+        app:layout_constraintStart_toEndOf="@+id/btn_start_bound_service"
+        app:layout_constraintTop_toTopOf="@+id/btn_start_bound_service" />
+
+    <TextView
+        android:id="@+id/tv_foreground_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_foreground_service_text"
+        android:textSize="@dimen/header3_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_bound_service" />
+
+    <Button
+        android:id="@+id/btn_start_foreground_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:layout_marginBottom="@dimen/middle_margin"
+        android:text="@string/start_text"
+        app:layout_constraintStart_toEndOf="@id/iv_profile_photo"
+        app:layout_constraintTop_toBottomOf="@id/tv_foreground_service" />
+
+    <Button
+        android:id="@+id/btn_stop_foreground_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/middle_margin"
+        android:text="@string/stop_text"
+        app:layout_constraintStart_toEndOf="@+id/btn_start_foreground_service"
+        app:layout_constraintTop_toTopOf="@+id/btn_start_foreground_service" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
