@@ -62,17 +62,18 @@ class ActivityC : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                var power = when((view as TextView).text.toString()) {
+                var power = when ((view as TextView).text.toString()) {
                     "Сложно" -> "Хиленький"
                     "Средне" -> "Ну норм"
-                    "Легко"  -> "Перебор"
-                    else     -> "Инопланетянин какой-то"
+                    "Легко" -> "Перебор"
+                    else -> "Инопланетянин какой-то"
                 }
 
                 Toast.makeText(this@ActivityC, power, Toast.LENGTH_SHORT).show()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) { }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
             
         ivProfilePhoto.setOnClickListener {
             Intent(Intent.ACTION_GET_CONTENT).also {

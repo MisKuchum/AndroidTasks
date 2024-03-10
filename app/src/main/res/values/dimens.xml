@@ -4,6 +4,7 @@
     <dimen name="header1_size">25sp</dimen>
     <dimen name="header2_size">20sp</dimen>
     <dimen name="header3_size">15sp</dimen>
+    <dimen name="header4_size">12sp</dimen>
     <dimen name="padding_size">16dp</dimen>
     <dimen name="first_name_margin">10dp</dimen>
     <dimen name="layout_delimiter_margin">20dp</dimen>
