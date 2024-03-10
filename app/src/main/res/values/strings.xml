@@ -39,6 +39,7 @@
     <string name="tv_bench_press">Жим лёжа (80кг):</string>
     <string name="tv_city_text">Город:</string>
     <string name="btn_get_location_text">Получить местоположение</string>
+    <string name="btn_show_activity_d_text">Фрагменты</string>
     <string name="tv_friends_text">Друзья:</string>
     <string name="friend_item_tv_name_text">Name Template</string>
     <string name="open">Открыть</string>
