@@ -10,6 +10,10 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Button
 import android.widget.EditText
 import androidx.core.app.ActivityCompat
@@ -27,6 +31,7 @@ class ActivityC : AppCompatActivity() {
     private val TAG = "MyApp"
     private var hasLocationPermissions = false
     private lateinit var etBirthdate: EditText
+    private lateinit var spBenchPress: Spinner
     private lateinit var etCity: EditText
     private lateinit var btnGetLocation: Button
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -38,10 +43,37 @@ class ActivityC : AppCompatActivity() {
 
         setContentView(R.layout.activity_c)
         etBirthdate = findViewById<EditText>(R.id.et_birthdate)
+        spBenchPress = findViewById(R.id.sp_bench_press)
         etCity = findViewById(R.id.et_city)
         btnGetLocation = findViewById(R.id.btn_get_location)
         ivProfilePhoto = findViewById(R.id.iv_profile_photo)
-        
+
+        val difficultyArray = resources.getStringArray(R.array.difficulty)
+        val spDifficultyAdapter = ArrayAdapter(
+            this,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            difficultyArray)
+        spBenchPress.adapter = spDifficultyAdapter
+
+        spBenchPress.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                var power = when((view as TextView).text.toString()) {
+                    "Сложно" -> "Хиленький"
+                    "Средне" -> "Ну норм"
+                    "Легко"  -> "Перебор"
+                    else     -> "Инопланетянин какой-то"
+                }
+
+                Toast.makeText(this@ActivityC, power, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
+            
         ivProfilePhoto.setOnClickListener {
             Intent(Intent.ACTION_GET_CONTENT).also {
                 it.type = "image/*"
