@@ -44,6 +44,10 @@
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>
     <string name="tv_header_text">Activities</string>
+    <string name="tv_counter_text">Счетчик:</string>
+    <string name="tv_counter_num_text">0</string>
+    <string name="btn_start_text">Старт</string>
+    <string name="btn_stop_text">Стоп</string>
 
     <string-array name="genders">
         <item>Мужской</item>

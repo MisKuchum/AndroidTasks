@@ -42,6 +42,9 @@
             </intent-filter>
 
         </activity>
+
+        <service android:name=".CounterService" />
+
     </application>
 
 </manifest>

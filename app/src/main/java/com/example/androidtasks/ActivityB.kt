@@ -1,12 +1,16 @@
 package com.example.androidtasks
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,6 +26,19 @@ class ActivityB : AppCompatActivity() {
     private lateinit var firstNameTextView: TextView
     private lateinit var secondNameTextView: TextView
     private lateinit var patronymicTextView: TextView
+    private lateinit var btnStart: Button
+    private lateinit var btnStop: Button
+    private lateinit var tvCounterNum: TextView
+    private lateinit var filter: IntentFilter
+
+    private val counterReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == COUNTER_CHANGED) {
+                val count = intent.getIntExtra(COUNT, 0)
+                tvCounterNum.text = count.toString()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +48,9 @@ class ActivityB : AppCompatActivity() {
         initViews()
         setTvOnClickListeners()
         setFioFromActivityA()
+        setCounterButtonOnClickListeners()
+
+        filter = IntentFilter(COUNTER_CHANGED)
     }
 
     override fun onStart() {
@@ -46,6 +66,7 @@ class ActivityB : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "ActivityB is [onResume] now")
+        registerReceiver(counterReceiver, filter)
     }
 
     override fun onPause() {
@@ -56,6 +77,7 @@ class ActivityB : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         Log.d(TAG, "ActivityB is [onStop] now")
+        unregisterReceiver(counterReceiver)
     }
 
     override fun onDestroy() {
@@ -92,6 +114,9 @@ class ActivityB : AppCompatActivity() {
         firstNameTextView = findViewById(R.id.tv_first_name)
         secondNameTextView = findViewById(R.id.tv_second_name)
         patronymicTextView = findViewById(R.id.tv_patronymic)
+        btnStart = findViewById(R.id.btn_start)
+        btnStop = findViewById(R.id.btn_stop)
+        tvCounterNum = findViewById(R.id.tv_counter_num)
     }
 
     private fun setTvOnClickListeners() {
@@ -120,4 +145,20 @@ class ActivityB : AppCompatActivity() {
         if (secondName != "") secondNameTextView.text = secondName
         if (patronymic != "") patronymicTextView.text = patronymic
     }
+
+    private fun setCounterButtonOnClickListeners() {
+        btnStart.setOnClickListener {
+            Intent(this, CounterService::class.java).also {
+                startService(it)
+            }
+        }
+        btnStop.setOnClickListener {
+            Intent(this, CounterService::class.java).also {
+                stopService(it)
+            }
+        }
+    }
 }
+
+const val COUNT = "COUNT"
+const val COUNTER_CHANGED = "COUNTER_CHANGED"
