@@ -198,12 +198,22 @@
         android:id="@+id/btn_accept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:onClick="onClickOpenActivityC"
         android:text="@string/accept_btn"
         app:layout_constraintBottom_toTopOf="@id/tv_blue"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_show_activity_d"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_show_activity_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_show_activity_d_text"
+        app:layout_constraintBottom_toTopOf="@id/tv_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_accept" />
 
     <TextView
         android:id="@+id/tv_action_c_text"

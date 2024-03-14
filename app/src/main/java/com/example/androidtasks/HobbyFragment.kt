@@ -24,10 +24,4 @@ class HobbyFragment : Fragment() {
         videoView.setVideoURI(Uri.parse("android.resource://" + context?.packageName + "/" + R.raw.hobby))
         videoView.start()
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HobbyFragment().apply { }
-    }
 }
