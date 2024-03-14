@@ -42,6 +42,14 @@
     <string name="tv_friends_text">Друзья:</string>
     <string name="friend_item_tv_name_text">Name Template</string>
     <string name="tv_fragment_hobby_text">Хоббихорсинг - тоже спорт!</string>
+    <string name="wolf">Волк</string>
+    <string name="money">Деньги</string>
+    <string name="home">Дом</string>
+    <string name="experience">Опыт</string>
+    <string name="not_wolf">Работа не волк</string>
+    <string name="walk">Значит надо ходить</string>
+    <string name="not_work">Лучше не работать</string>
+    <string name="not_experience">Опыт без опыта</string>
 
     <string-array name="genders">
         <item>Мужской</item>

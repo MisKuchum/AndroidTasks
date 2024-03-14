@@ -37,20 +37,20 @@ class WorkFragment : Fragment() {
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (images[position]) {
-                R.drawable.work -> tab.text = "Волк"
-                R.drawable.work2 -> tab.text = "Деньги"
-                R.drawable.work3 -> tab.text = "Дом"
-                R.drawable.work4 -> tab.text = "Опыт"
+                R.drawable.work -> tab.text = getString(R.string.wolf)
+                R.drawable.work2 -> tab.text = getString(R.string.money)
+                R.drawable.work3 -> tab.text = getString(R.string.home)
+                R.drawable.work4 -> tab.text = getString(R.string.experience)
             }
         }.attach()
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val toastMessage = when (tab?.text) {
-                    "Волк" -> "Работа не волк"
-                    "Деньги" -> "Значит надо ходить"
-                    "Дом" -> "Лучше не работать"
-                    "Опыт" -> "Опыт без опыта"
+                    getString(R.string.wolf) -> getString(R.string.not_wolf)
+                    getString(R.string.money) -> getString(R.string.walk)
+                    getString(R.string.home) -> getString(R.string.not_work)
+                    getString(R.string.experience) -> getString(R.string.not_experience)
                     else -> ""
                 }
                 Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
