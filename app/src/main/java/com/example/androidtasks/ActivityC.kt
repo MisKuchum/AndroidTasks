@@ -8,8 +8,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Spinner
+import android.widget.Button
+import android.widget.EditText
+import com.google.android.gms.location.FusedLocationProviderClient
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -18,7 +21,7 @@ class ActivityC : AppCompatActivity() {
 
     private lateinit var ivProfilePhoto: ImageView
     private lateinit var bottomNavigationView: BottomNavigationView
-  
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ActivityC is [onCreate] now")
@@ -27,7 +30,7 @@ class ActivityC : AppCompatActivity() {
 
         ivProfilePhoto = findViewById(R.id.iv_profile_photo)
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
-            
+
         ivProfilePhoto.setOnClickListener {
             Intent(Intent.ACTION_GET_CONTENT).also {
                 it.type = "image/*"
@@ -37,14 +40,14 @@ class ActivityC : AppCompatActivity() {
 
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId) {
-                R.id.mi_profile  -> changeFragment(ProfileFragment(), ProfileFragment.javaClass.name)
-                R.id.mi_work -> changeFragment(WorkFragment(), WorkFragment.javaClass.name)
-                R.id.mi_hobby -> changeFragment(HobbyFragment(), HobbyFragment.javaClass.name)
+                R.id.mi_profile  -> changeFragment(FragmentTag.PROFILE)
+                R.id.mi_work -> changeFragment(FragmentTag.WORK)
+                R.id.mi_hobby -> changeFragment(FragmentTag.HOBBY)
             }
             true
         }
 
-        changeFragment(ProfileFragment(), ProfileFragment.javaClass.name)
+        changeFragment(FragmentTag.PROFILE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -95,17 +98,21 @@ class ActivityC : AppCompatActivity() {
         finish()
     }
 
-    private fun changeFragment(fragment: Fragment, fragmentTag: String) {
+    private fun changeFragment(fragmentTag: FragmentTag) {
         val transaction = supportFragmentManager.beginTransaction()
 
         val currentFragment = supportFragmentManager.primaryNavigationFragment
         if (currentFragment != null)
             transaction.hide(currentFragment)
 
-        var tempFragment = supportFragmentManager.findFragmentByTag(fragmentTag)
+        var tempFragment = supportFragmentManager.findFragmentByTag(fragmentTag.toString())
         if (tempFragment == null) {
-            tempFragment = fragment
-            transaction.add(R.id.fl_fragments, tempFragment, fragmentTag)
+            tempFragment = when (fragmentTag) {
+                FragmentTag.PROFILE -> ProfileFragment()
+                FragmentTag.WORK -> WorkFragment()
+                FragmentTag.HOBBY -> HobbyFragment()
+            }
+            transaction.add(R.id.fl_fragments, tempFragment, fragmentTag.toString())
         } else
             transaction.show(tempFragment)
 

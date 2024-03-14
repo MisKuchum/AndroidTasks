@@ -161,10 +161,4 @@ class ProfileFragment : Fragment() {
         if (hasAccessCoarseLocationPermission() && hasAccessFineLocationPermission())
             hasLocationPermissions = true
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply { }
-    }
 }

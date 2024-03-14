@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    tools:context=".FirstFragment">
+
+    <TextView
+        android:id="@+id/tv_fragment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fragment1"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/header1_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Цвет:"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/header2_size"
+        app:layout_constraintBottom_toBottomOf="@+id/et_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/et_color" />
+
+    <EditText
+        android:id="@+id/et_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/middle_margin"
+        android:backgroundTint="@color/orange"
+        android:ems="5"
+        android:maxLength="7"
+        android:text="#"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/header2_size"
+        app:layout_constraintStart_toEndOf="@+id/tv_color"
+        app:layout_constraintTop_toBottomOf="@id/tv_fragment_name" />
+
+    <Button
+        android:id="@+id/btn_edit_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/middle_margin"
+        android:background="@drawable/btn_background"
+        android:padding="5dp"
+        android:text="Изменить цвет Fragment2"
+        android:textColor="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_color" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
