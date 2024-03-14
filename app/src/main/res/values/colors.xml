@@ -10,4 +10,7 @@
     <color name="pink_light">#F086FC</color>
     <color name="pink_dark">#EB37FF</color>
     <color name="custom_toast_background">#97A7FF</color>
+    <color name="green">#029E04</color>
+    <color name="blue">#014ED3</color>
+    <color name="orange">#FF6A3B</color>
 </resources>
