@@ -17,4 +17,8 @@
         android:id="@+id/mi_activity_d"
         android:title="ActivityD" />
 
+    <item
+        android:id="@+id/mi_activity_k"
+        android:title="ActivityK" />
+
 </menu>

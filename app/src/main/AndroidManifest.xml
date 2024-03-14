@@ -20,6 +20,11 @@
         android:theme="@style/Theme.AndroidTasks"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityK"
+            android:exported="false"
+            android:launchMode="standard"
+            android:theme="@style/Theme.AppCompat.DayNight" />
+        <activity
             android:name=".ActivityD"
             android:exported="false"
             android:launchMode="standard"
