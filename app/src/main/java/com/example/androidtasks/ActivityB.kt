@@ -1,5 +1,6 @@
 package com.example.androidtasks
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,6 +24,8 @@ class ActivityB : AppCompatActivity() {
     private lateinit var firstNameTextView: TextView
     private lateinit var secondNameTextView: TextView
     private lateinit var patronymicTextView: TextView
+    private lateinit var btnShowActivityD: Button
+    private lateinit var photoUriPath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,13 @@ class ActivityB : AppCompatActivity() {
         initViews()
         setTvOnClickListeners()
         setFioFromActivityA()
+
+        btnShowActivityD.setOnClickListener {
+            Intent(Intent.ACTION_GET_CONTENT).also {
+                it.type = "image/*"
+                startActivityForResult(it, 0)
+            }
+        }
     }
 
     override fun onStart() {
@@ -63,6 +74,23 @@ class ActivityB : AppCompatActivity() {
         Log.d(TAG, "ActivityB is [onDestroy] now")
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK && requestCode == 0) {
+            if (data?.data != null)
+                photoUriPath = data.data.toString()
+            else
+                photoUriPath = ""
+        } else
+            photoUriPath = ""
+
+        Intent(this, ActivityD::class.java).also {
+            it.putExtra(PHOTO_URI_PATH, photoUriPath)
+            startActivity(it)
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean = MyOptionsMenu().create(this, menu)
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = MyOptionsMenu().itemSelected(this, item)
@@ -92,6 +120,7 @@ class ActivityB : AppCompatActivity() {
         firstNameTextView = findViewById(R.id.tv_first_name)
         secondNameTextView = findViewById(R.id.tv_second_name)
         patronymicTextView = findViewById(R.id.tv_patronymic)
+        btnShowActivityD = findViewById(R.id.btn_show_activity_d)
     }
 
     private fun setTvOnClickListeners() {
@@ -121,3 +150,5 @@ class ActivityB : AppCompatActivity() {
         if (patronymic != "") patronymicTextView.text = patronymic
     }
 }
+
+const val PHOTO_URI_PATH = "PHOTO_URI_PATH"

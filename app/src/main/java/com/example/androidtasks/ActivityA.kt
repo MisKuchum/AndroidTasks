@@ -3,6 +3,7 @@ package com.example.androidtasks
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -16,6 +17,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -49,6 +51,10 @@ class ActivityA : AppCompatActivity() {
     private lateinit var rvFriends: RecyclerView
     private lateinit var tvActivityName: TextView
     private lateinit var flProfileButton: FrameLayout
+    private lateinit var etBirthdate: EditText
+    private lateinit var btnSave: Button
+    private lateinit var btnLoad: Button
+    private lateinit var spGender: Spinner
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
@@ -74,6 +80,10 @@ class ActivityA : AppCompatActivity() {
         rvFriends = findViewById(R.id.rv_friends)
         tvActivityName = findViewById(R.id.tv_activity_name)
         flProfileButton = findViewById(R.id.fl_profile_button)
+        etBirthdate = findViewById(R.id.et_birthdate)
+        btnSave = findViewById(R.id.btn_save)
+        btnLoad = findViewById(R.id.btn_load)
+        spGender = findViewById(R.id.sp_gender)
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
 
@@ -150,6 +160,7 @@ class ActivityA : AppCompatActivity() {
                 R.id.mi_activity_a -> Intent(this, ActivityA::class.java)
                 R.id.mi_activity_b -> Intent(this, ActivityB::class.java)
                 R.id.mi_activity_c -> Intent(this, ActivityC::class.java)
+                R.id.mi_activity_d -> Intent(this, ActivityD::class.java)
                 else -> Intent(this, ActivityA::class.java)
             }
             isStartNewActivity = true
@@ -159,6 +170,43 @@ class ActivityA : AppCompatActivity() {
 
         createNotificationChannel()
         postNotification(NotificationMode.ON_START)
+
+        val sharedPref = getSharedPreferences(MY_PREF, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        btnSave.setOnClickListener {
+            editor.apply {
+                putString(FIRST_NAME, etFirstName.text.toString())
+                putString(SECOND_NAME, etSecondName.text.toString())
+                putString(PATRONYMIC, etPatronymic.text.toString())
+                putString(BIRTHDATE, etBirthdate.text.toString())
+                putString(GENDER, spGender.selectedItem.toString())
+                putString(PHONE, etPhone.text.toString())
+                putString(HEIGHT, etHeight.text.toString())
+                putString(PASSWORD, etPassword.text.toString())
+                apply()
+            }
+        }
+
+        btnLoad.setOnClickListener {
+            val currentGender = sharedPref.getString(GENDER, null)
+            val genders = resources.getStringArray(R.array.genders)
+
+            for (i in genders.indices) {
+                if (genders[i] == currentGender) {
+                    spGender.setSelection(i)
+                    break
+                }
+            }
+
+            etFirstName.setText(sharedPref.getString(FIRST_NAME, null))
+            etSecondName.setText(sharedPref.getString(SECOND_NAME, null))
+            etPatronymic.setText(sharedPref.getString(PATRONYMIC, null))
+            etBirthdate.setText(sharedPref.getString(BIRTHDATE, null))
+            etPhone.setText(sharedPref.getString(PHONE, null))
+            etHeight.setText(sharedPref.getString(HEIGHT, null))
+            etPassword.setText(sharedPref.getString(PASSWORD, null))
+        }
     }
 
     override fun onStart() {
@@ -393,9 +441,15 @@ class ActivityA : AppCompatActivity() {
 
     companion object {
         private const val MIN_PASSWORD_LEN = 8
+        private const val MY_PREF = "my_pref"
     }
 }
 
 const val FIRST_NAME = "FIRST_NAME"
 const val SECOND_NAME = "SECOND_NAME"
 const val PATRONYMIC = "PATRONYMIC"
+const val BIRTHDATE = "BIRTHDATE"
+const val GENDER = "GENDER"
+const val PHONE = "PHONE"
+const val HEIGHT = "HEIGHT"
+const val PASSWORD = "PASSWORD"
