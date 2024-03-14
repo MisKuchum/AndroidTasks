@@ -31,8 +31,8 @@
         <activity
             android:name=".ActivityC"
             android:exported="false"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.AppCompat.DayNight" />
+            android:theme="@style/Theme.MaterialComponents.DayNight"
+            android:launchMode="singleTask" />
         <activity
             android:name=".ActivityA"
             android:exported="true"
